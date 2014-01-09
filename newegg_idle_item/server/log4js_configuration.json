@@ -1,0 +1,25 @@
+{
+  "appenders": [
+    {
+      "type": "file",
+      "filename": "/logs/info_file.log",
+      "maxLogSize": 2048000,
+      "backups": 3,
+	  "category": "infos"
+    },
+	{
+      "type": "file",
+      "filename": "/logs/error_file.log",
+      "maxLogSize": 2048000,
+      "backups": 3,
+	  "category": "errors"
+    },
+    {
+      "type":"console"
+    }
+  ],
+   "levels": {
+    "errors":  "ERROR", 
+	"infos":  "INFO"
+  }
+}

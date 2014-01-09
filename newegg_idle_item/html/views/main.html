@@ -1,0 +1,94 @@
+<div class="main-container">
+	<div class="main-content">
+		<div class='top-content'>
+			<img src="image/bananer.png" width='310' height='28' class='bananer'>
+			<div class='login-bar' ng-hide='user.signed'>
+				<label class="inline clearfix">
+					<span class="inline input-icon input-icon-right">
+						<input type="text" id='username' class="form-control" placeholder="User" ng-model="user.user"/>
+						<i class="icon-user"></i>   
+					</span>
+				</label>
+				<label class="inline clearfix">
+					<span class="inline input-icon input-icon-right">
+						<input type="password" id='username' class="form-control" placeholder="Password" ng-model="user.password"/>
+						<i class="icon-lock"></i>   
+					</span>
+				</label>
+			</div>
+			<div class="pull-right" role="navigation" ng-show='user.signed'>
+          	<ul class="nav ace-nav">
+            <li>
+              <a data-toggle="dropdown" href="" class="dropdown-toggle">
+                <!-- <img class="nav-user-photo" ng-src="{{userImg}}" alt='profile img'/>  
+                -->
+                <span class="user-info">Welcome, {{user.userName}}</span> <i class="icon-caret-down"></i>
+              </a>
+              <ul id='dropdown_menu' class="user-menu pull-right dropdown-menu dropdown-caret dropdown-close">
+                <li>{{user.userName}}</li>
+                <li>
+                  <a href='' id='logout' ng-click="logout()"> <i class="icon-off"></i>
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class='item-content'>
+        	<div class='sell-content'>
+        		<ul class='list-layout'>
+        			<li>
+        				<div class='sell-title-container'>
+        					<span class='sell-title'></span>
+        				</div>
+        			</li>
+        			<li>
+        				<div class='search-container'>
+        					<input type='text' placeholder='Search...' ng-keydown='sellSearch()'>
+        					<i class='icon-search'></i> 
+        				</div>
+        			</li>
+        			<li>
+        				<div class='show-items'>
+        					<div ng-repeat='item in sellItems' class='item'>
+        						<img ng-src='item.thumbnail'>
+        						<span class='item-content'>{{item.content | contentReduce}}</span>
+        						<span class='item-info1'>{{item.user}}</span>
+        						<span class='item-info2'>{{item.datetime | datetimeFormat}}</span>
+        					</div>
+        				</div>
+        			</li>
+        		</ul>
+        </div>
+        <div class='buy-content'>
+        	<div class='buy-title-container'>
+        		<ul class='list-layout'>
+        			<li>
+        				<div class='buy-title-container'>
+        					<span class='buy-title'></span>
+        				</div>
+        			</li>
+        			<li>
+        				<div class='search-container'>
+        					<input type='text' placeholder='Search...' ng-keydown='buySearch()'>
+        					<i class='icon-search'></i> 
+        				</div>
+        			</li>
+        			<li>
+        				<div class='show-items'>
+        					<div ng-repeat='item in buyItems' class='item'>
+        						<img ng-src='item.thumbnail'>
+        						<span class='item-content'>{{item.content | contentReduce}}</span>
+        						<span class='item-info1'>{{item.user}}</span>
+        						<span class='item-info2'>{{item.datetime | datetimeFormat}}</span>
+        					</div>
+        				</div>
+        			</li>
+        		</ul>
+        	</div>
+        </div>
+		</div>
+	</div>
+</div>
