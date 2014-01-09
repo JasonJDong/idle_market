@@ -383,3 +383,115 @@ h5 img{
 .hidden-parent-margin-bottom{
   margin-bottom: 0px;
 }
+
+.login-bar{
+  display: inline-block;
+  top: 15px;
+  vertical-align: top;
+  float: right;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.bananer{
+  margin-left: 569px;
+}
+
+.sell-title-container{
+  width: 100%;
+}
+
+.list-layout{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  width: 100%;
+}
+
+.do-title{
+  text-align: center;
+  font-size: 28px;
+  display: block;
+}
+
+.do-title:hover{
+  color: #1c4cf8;
+  cursor: pointer;
+}
+
+.sell-content,.buy-content{
+  display: inline-block;
+  width: 49%;
+}
+
+.buy-content{
+  float: right;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.sell-content{
+  padding-left: 15px;
+  padding-right: 15px;
+  /*border-right: 1px solid #ccc;*/
+}
+
+.search-container{
+  width: 100%;
+}
+
+.search-box{
+  width: 100%
+}
+
+.search-box > span{
+  width: 100%
+}
+
+.show-items{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 600px; 
+  width: 100%;
+}
+
+.show-items > ul{
+  list-style: none;
+}
+
+.show-items > ul > li img{
+  float: left;
+  margin-right: 15px;
+}
+
+.item{
+  height: 128px;
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 6px;
+  line-height: 18px;
+}
+
+.item-content{
+  display: block;
+  font-size: 18px;
+  height: 85%;
+  width: 80%;
+  color: #000;
+  border: 0 none;
+  resize: none;
+}
+
+.item-info1{
+  vertical-align: bottom;
+  float: left;
+  margin-top: 9px;
+}
+
+.item-info2{
+  vertical-align: bottom;
+  float: right;
+  margin-top: 9px;
+}

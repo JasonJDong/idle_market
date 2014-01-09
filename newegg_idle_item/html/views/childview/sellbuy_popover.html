@@ -1,0 +1,28 @@
+<div class='popover-content' sellbuy-popover>
+	<div class='sellbuy-title-container'>
+		<span class='sellBuy-title'>{{sellBuyTitle}}</span>
+		<span class='close' ng-click='closeSelf()'>×</span>
+	</div>
+	<div class='sellBuy-user-info'>
+		<span class='sellBuy-description'><i class='icon-key'></i></span>
+		<label class="inline clearfix">
+			<span class="inline input-icon input-icon-right">
+				<input type="text" id='username' class="form-control" placeholder="User" ng-model="item.user"/>
+				<i class="icon-user"></i>   
+			</span>
+		</label>
+		<label class="inline clearfix">
+			<span class="inline input-icon input-icon-right">
+				<input type="password" id='username' class="form-control" placeholder="Password" ng-model="item.password"/>
+				<i class="icon-lock"></i>   
+			</span>
+		</label>
+	</div>
+	<div class='sellBuy-item-content'>
+		<textarea class='sellBuy-item-content-input' ng-model='item.content'></textarea>
+	</div>
+	<div class='sellBuy-ok-cancel'>
+		<span class='sellBuy-cancel'>取消</span>
+		<button class='btn btn-info' ng-click='sellBuy()'><i class='icon-ok'></i>确定</button>
+	</div>
+</div>

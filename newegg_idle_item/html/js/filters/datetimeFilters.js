@@ -20,8 +20,10 @@ angular.module('datetimeFilters', []).
             fmt_str = fmt_str.replace("ss", oDate.getSeconds().toString().length == 1 ? "0"+ oDate.getSeconds(): oDate.getSeconds());
             return fmt_str;
         }
-
-        var date = new Date(datetime);
-        return formatDate(date, 'YYYY-MM-DD hh:mm:ss', true);
+        if (datetime) {
+          var date = new Date(datetime);
+          return formatDate(date, 'YYYY-MM-DD hh:mm:ss', true);
+        }
+        return "";
    		}
    	});

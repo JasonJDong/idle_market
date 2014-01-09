@@ -1,3 +1,3 @@
 exports.listenPort = 9000;
 exports.expressloglevel = 'error';
-exports.home = 'D:\\git\\newegg_idle_item\\html';
+exports.home = 'E:\\Work\\idle_market\\newegg_idle_item\\html';

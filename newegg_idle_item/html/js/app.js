@@ -5,19 +5,20 @@ var idleApp = angular.module('idleApp', [
   'ngRoute',
   'ngCookies',
   'utilsService',
+  'mainControllers',
   'commonUtilServices',
   'customEventHandler',
-  'loginControllers',
-  'beforeLoginControllers',
+  // 'loginControllers',
+  // 'beforeLoginControllers',
   'timeoutInfoModule',
   'ui.bootstrap',
   'neweggModules',
   'contentFilters',
-  ''
+  'datetimeFilters'
 ]);
 
 idleApp.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home.html', {
+  $routeProvider.when('/', {
   		templateUrl: 'views/main.html', 
   		controller: 'MainCtrl'});
 
