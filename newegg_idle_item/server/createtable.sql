@@ -6,27 +6,29 @@ CREATE TABLE IF NOT EXISTS userMeta (
 );
 
 CREATE TABLE IF NOT EXISTS toBuy (
-	id INTEGER AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
     user varchar(20),
     content TEXT,
     datetime INTEGER,
+    password varchar(50),
+    pictureUrl varchar(100),
     tag1 varchar(10),
     tag2 varchar(10),
     tag3 varchar(10),
     tag4 varchar(10),
-    tag5 varchar(10),
-    CONSTRAINT PK_toBuy PRIMARY KEY (id ASC)
+    tag5 varchar(10)
 );
 
 CREATE TABLE IF NOT EXISTS toSell (
-	id INTEGER AUTOINCREMENT,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
     user varchar(40),
     content TEXT,
     datetime INTEGER,
+    password varchar(50),
+    pictureUrl varchar(100),
     tag1 varchar(10),
     tag2 varchar(10),
     tag3 varchar(10),
     tag4 varchar(10),
-    tag5 varchar(10),
-    CONSTRAINT PK_toSell PRIMARY KEY (id ASC)
+    tag5 varchar(10)
 );

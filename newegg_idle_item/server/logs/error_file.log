@@ -1,0 +1,322 @@
+[2014-01-13 18:03:55.361] [ERROR] errors - web server uncaughtException :  e is not defined 
+ type: not_defined 
+ arguments: object 
+ stack:  ReferenceError: e is not defined
+    at Database.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:149:40)
+--> in Database#exec('CREATE TABLE IF NOT EXISTS userMeta (\r\n    user varchar(20),\r\n    displayName varchar(40),\r\n    password varchar(16),\r\n    CONSTRAINT PK_userMeta PRIMARY KEY (user ASC)\r\n);\r\n\r\nCREATE TABLE IF NOT EXISTS toBuy (\r\n\tid INTEGER AUTOINCREMENT,\r\n    user varchar(20),\r\n    content TEXT,\r\n    datetime INTEGER,\r\n    tag1 varchar(10),\r\n    tag2 varchar(10),\r\n    tag3 varchar(10),\r\n    tag4 varchar(10),\r\n    tag5 varchar(10),\r\n    CONSTRAINT PK_toBuy PRIMARY KEY (id ASC)\r\n);\r\n\r\nCREATE TABLE IF NOT EXISTS toSell (\r\n\tid INTEGER AUTOINCREMENT,\r\n    user varchar(40),\r\n    content TEXT,\r\n    datetime INTEGER,\r\n    tag1 varchar(10),\r\n    tag2 varchar(10),\r\n    tag3 varchar(10),\r\n    tag4 varchar(10),\r\n    tag5 varchar(10),\r\n    CONSTRAINT PK_toSell PRIMARY KEY (id ASC)\r\n);', [Function])
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:145:47
+    at fs.js:266:14
+    at Object.oncomplete (fs.js:107:15) { [ReferenceError: e is not defined] __augmented: true }
+[2014-01-13 18:04:08.294] [ERROR] errors - { [Error: SQLITE_ERROR: near "AUTOINCREMENT": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:04:08.992] [ERROR] errors - { [Error: SQLITE_ERROR: near "AUTOINCREMENT": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:04:08.995] [ERROR] errors - { [Error: SQLITE_ERROR: near "AUTOINCREMENT": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:04:09.018] [ERROR] errors - { [Error: SQLITE_ERROR: near "AUTOINCREMENT": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:04:09.020] [ERROR] errors - { [Error: SQLITE_ERROR: near "AUTOINCREMENT": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:04:09.041] [ERROR] errors - { [Error: SQLITE_ERROR: near "AUTOINCREMENT": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:04:09.053] [ERROR] errors - { [Error: SQLITE_ERROR: near "AUTOINCREMENT": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:04:09.066] [ERROR] errors - { [Error: SQLITE_ERROR: near "AUTOINCREMENT": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:04:09.108] [ERROR] errors - { [Error: SQLITE_ERROR: near "AUTOINCREMENT": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:05:49.158] [ERROR] errors - { [Error: SQLITE_ERROR: table "toBuy" has more than one primary key] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:05:49.869] [ERROR] errors - { [Error: SQLITE_ERROR: table "toBuy" has more than one primary key] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:05:49.880] [ERROR] errors - { [Error: SQLITE_ERROR: table "toBuy" has more than one primary key] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:05:49.884] [ERROR] errors - { [Error: SQLITE_ERROR: table "toBuy" has more than one primary key] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:05:49.891] [ERROR] errors - { [Error: SQLITE_ERROR: table "toBuy" has more than one primary key] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:05:49.903] [ERROR] errors - { [Error: SQLITE_ERROR: table "toBuy" has more than one primary key] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:05:49.921] [ERROR] errors - { [Error: SQLITE_ERROR: table "toBuy" has more than one primary key] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:05:49.925] [ERROR] errors - { [Error: SQLITE_ERROR: table "toBuy" has more than one primary key] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:05:49.946] [ERROR] errors - { [Error: SQLITE_ERROR: table "toBuy" has more than one primary key] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:09:31.941] [ERROR] errors - { [Error: SQLITE_ERROR: near ")": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:09:32.654] [ERROR] errors - { [Error: SQLITE_ERROR: near ")": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:09:32.654] [ERROR] errors - { [Error: SQLITE_ERROR: near ")": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:09:32.697] [ERROR] errors - { [Error: SQLITE_ERROR: near ")": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:09:32.701] [ERROR] errors - { [Error: SQLITE_ERROR: near ")": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:09:32.706] [ERROR] errors - { [Error: SQLITE_ERROR: near ")": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:09:32.722] [ERROR] errors - { [Error: SQLITE_ERROR: near ")": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:09:32.729] [ERROR] errors - { [Error: SQLITE_ERROR: near ")": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 18:09:32.759] [ERROR] errors - { [Error: SQLITE_ERROR: near ")": syntax error] errno: 1, code: 'SQLITE_ERROR' }
+[2014-01-13 21:49:54.209] [ERROR] errors - web server uncaughtException :  undefined is not a function 
+ type: called_non_callable 
+ arguments: object 
+ stack:  TypeError: undefined is not a function
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?', [ 'jason',
+  '阿打发的法师打发打发似的',
+  1389620994197,
+  undefined,
+  '',
+  '',
+  ' ',
+  ' ',
+  ' ',
+  [Function],
+  '32064c1a31670dd22c8b2dd39036b125' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:86:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [TypeError: undefined is not a function] __augmented: true }
+[2014-01-13 21:49:54.211] [ERROR] errors - web server uncaughtException :  undefined is not a function 
+ type: called_non_callable 
+ arguments: object 
+ stack:  TypeError: undefined is not a function
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?', [ 'jason',
+  '阿打发的法师打发打发似的',
+  1389620994202,
+  undefined,
+  '',
+  '',
+  ' ',
+  ' ',
+  ' ',
+  [Function],
+  '51b50b619995346f2489943a2ebf3fb5' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:86:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [TypeError: undefined is not a function] __augmented: true }
+[2014-01-13 21:50:38.351] [ERROR] errors - web server uncaughtException :  undefined is not a function 
+ type: called_non_callable 
+ arguments: object 
+ stack:  TypeError: undefined is not a function
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?', [ 'jason',
+  '阿打发的法师打发打发似的',
+  1389621038341,
+  undefined,
+  '',
+  '',
+  ' ',
+  ' ',
+  ' ',
+  [Function],
+  '28dfcd0e38f9faa282ee6f26c8aa8732' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:86:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [TypeError: undefined is not a function] __augmented: true }
+[2014-01-13 21:50:38.351] [ERROR] errors - web server uncaughtException :  undefined is not a function 
+ type: called_non_callable 
+ arguments: object 
+ stack:  TypeError: undefined is not a function
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?', [ 'jason',
+  '阿打发的法师打发打发似的',
+  1389621038344,
+  undefined,
+  '',
+  '',
+  ' ',
+  ' ',
+  ' ',
+  [Function],
+  '565e8d0774532f4398485c4083d499cd' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:86:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [TypeError: undefined is not a function] __augmented: true }
+[2014-01-13 21:52:48.787] [ERROR] errors - web server uncaughtException :  undefined is not a function 
+ type: called_non_callable 
+ arguments: object 
+ stack:  TypeError: undefined is not a function
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?', [ 'jason',
+  '爱的发发 发生大发',
+  1389621168775,
+  undefined,
+  '',
+  '',
+  ' ',
+  ' ',
+  ' ',
+  [Function],
+  '9cee7f0ec4eda127fa8d9d97681d8c71' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:86:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [TypeError: undefined is not a function] __augmented: true }
+[2014-01-13 21:52:48.788] [ERROR] errors - web server uncaughtException :  undefined is not a function 
+ type: called_non_callable 
+ arguments: object 
+ stack:  TypeError: undefined is not a function
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?', [ 'jason',
+  '爱的发发 发生大发',
+  1389621168778,
+  undefined,
+  '',
+  '',
+  ' ',
+  ' ',
+  ' ',
+  [Function],
+  'ad1b29699ae7ca6dbbb1b1d97ca68316' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:86:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [TypeError: undefined is not a function] __augmented: true }
+[2014-01-13 21:52:48.816] [ERROR] errors - web server uncaughtException :  undefined is not a function 
+ type: called_non_callable 
+ arguments: object 
+ stack:  TypeError: undefined is not a function
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?', [ 'jason',
+  '爱的发发 发生大发',
+  1389621168806,
+  undefined,
+  '',
+  '',
+  ' ',
+  ' ',
+  ' ',
+  [Function],
+  'b6079a1b084118d0e127e51dbed9f83d' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:86:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [TypeError: undefined is not a function] __augmented: true }
+[2014-01-13 21:52:49.853] [ERROR] errors - web server uncaughtException :  undefined is not a function 
+ type: called_non_callable 
+ arguments: object 
+ stack:  TypeError: undefined is not a function
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?', [ 'jason',
+  '爱的发发 发生大发',
+  1389621169836,
+  undefined,
+  '',
+  '',
+  ' ',
+  ' ',
+  ' ',
+  [Function],
+  '2ead8484f2f718703bc8bcd9ed04fb07' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:86:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [TypeError: undefined is not a function] __augmented: true }
+[2014-01-13 21:52:49.868] [ERROR] errors - web server uncaughtException :  undefined is not a function 
+ type: called_non_callable 
+ arguments: object 
+ stack:  TypeError: undefined is not a function
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?', [ 'jason',
+  '爱的发发 发生大发',
+  1389621169861,
+  undefined,
+  '',
+  '',
+  ' ',
+  ' ',
+  ' ',
+  [Function],
+  '35699085c333693873a7192111d7e3c5' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:86:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [TypeError: undefined is not a function] __augmented: true }
+[2014-01-13 22:17:37.265] [ERROR] errors - web server uncaughtException :  err is not defined 
+ type: not_defined 
+ arguments: object 
+ stack:  ReferenceError: err is not defined
+    at E:\Work\idle_market\newegg_idle_item\server\web-server.js:88:17
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('INSERT INTO toSell(id, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ 'jason',
+  '爱的发发阿萨德发生',
+  1389622657254,
+  '0d4ed8a34613a3ecc95f843aed5bb965',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:87:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [ReferenceError: err is not defined] __augmented: true }
+[2014-01-13 22:17:37.278] [ERROR] errors - web server uncaughtException :  err is not defined 
+ type: not_defined 
+ arguments: object 
+ stack:  ReferenceError: err is not defined
+    at E:\Work\idle_market\newegg_idle_item\server\web-server.js:88:17
+    at E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:107:17
+    at Statement.<anonymous> (E:\Work\idle_market\newegg_idle_item\server\node_modules\sqlite3\lib\sqlite3.js:9:41)
+--> in Database#run('INSERT INTO toSell(id, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ 'jason',
+  '爱的发发阿萨德发生',
+  1389622657270,
+  '764dedc39a4977fdf456d2ab0f2f9a7a',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (E:\Work\idle_market\newegg_idle_item\server\sqliteutil.js:106:39)
+    at app.post.data (E:\Work\idle_market\newegg_idle_item\server\web-server.js:87:10)
+    at callbacks (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (E:\Work\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [ReferenceError: err is not defined] __augmented: true }

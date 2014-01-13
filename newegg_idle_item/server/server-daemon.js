@@ -6,6 +6,7 @@ var path = require('path');
 var cluster = require('cluster');
 var webServer = require('./web-server');
 var os = require('os');
+var sqliteClass = require('./sqliteutil').Sqlite;
 
 var numCPUs = os.cpus().length;
 
@@ -15,6 +16,10 @@ process.on("uncaughtException", function (err) {
 });
 
 if (cluster.isMaster) {
+
+	sqlite = new sqliteClass();
+	sqlite.init();
+
     for (var i = 0; i < numCPUs; i++) {
         cluster.fork();
     }

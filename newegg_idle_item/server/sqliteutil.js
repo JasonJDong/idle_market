@@ -17,11 +17,15 @@ exports.moduleType = {
 }
 
 var SQLITE = function () {
-    this.load = function () {
-        opendb(function (success) {
+    this.init = function () {
+        installDB(function (success) {
             util.info("sqlite database installed", success ? "success." : "failed.");
         });
     };
+
+    this.open = function () {
+        openDB();
+    }
 
     this.close = function () {
         closeDb();
@@ -49,48 +53,56 @@ var SQLITE = function () {
         }
     };
 
-    this.buyItem = function (user, content, tags, id, callback) {
+    this.buyItem = function (user, content, tags, password, picUrl, id, callback) {
         if (SQLITE.prototype.dbclient != null) {
             var params = new Array();
+            password = util.cryptoString(password)
             params.push(user);
             params.push(content);
             params.push(new Date().valueOf());
+            if (!id) params.push(password);
+            params.push(picUrl);
             tags.forEach(function (tag) {
                 params.push(tag);
             });
 
-            if (!id) {
+            if (id && password) {
                 params.push(id);
+                params.push(password)
             }
 
             var sqlStr = !id? 
-                    "INSERT INTO toBuy(user, content, datetime, tag1, tag2, tag3, tag4, tag5) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO toBuy(id, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
                     :
-                    "UPDATE toBuy SET user=?, content=?, datetime=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=?";
+                    "UPDATE toBuy SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?";
             SQLITE.prototype.dbclient.run(sqlStr, params, function (err) {
                 callback(err);
             });
         }
     };
 
-    this.sellItem = function (user, content, tags, isNew, callback) {
+    this.sellItem = function (user, content, tags, password, picUrl, id, callback) {
         if (SQLITE.prototype.dbclient != null) {
             var params = new Array();
+            password = util.cryptoString(password)
             params.push(user)
             params.push(content);
             params.push(new Date().valueOf());
+            if(!id) params.push(password);
+            params.push(picUrl);
             tags.forEach(function (tag) {
                 params.push(tag);
             });
 
-            if (!id) {
+            if (id && password) {
                 params.push(id);
+                params.push(password);
             }
 
             var sqlStr = !id? 
-                    "INSERT INTO toSell(user, content, datetime, tag1, tag2, tag3, tag4, tag5) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO toSell(id, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
                     :
-                    "UPDATE toSell SET user=?, content=?, datetime=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=?";
+                    "UPDATE toSell SET user=?, content=?, datetime=?, pictureUrl=?, tag1=?, tag2=?, tag3=?, tag4=?, tag5=? WHERE id=? and password=?";
             SQLITE.prototype.dbclient.run(sqlStr, params, function (err) {
                 callback(err);
             });
@@ -120,7 +132,7 @@ var SQLITE = function () {
 
     this.getItems = function (count, page, buyOrSell, callback) {
         if (SQLITE.prototype.dbclient != null) {
-            var sqlStr = "SELECT id, user, content, datetime, tag1, tag2, tag3, tag4, tag5 FROM " + buyOrSell + 
+            var sqlStr = "SELECT id, user, content, datetime, pictureUrl, tag1, tag2, tag3, tag4, tag5 FROM " + buyOrSell + 
                         " LIMIT " + count + " OFFSET " + (page * count);
             SQLITE.prototype.dbclient.all(sqlStr, function (err, rows) {
                 callback(rows);
@@ -129,26 +141,34 @@ var SQLITE = function () {
     }
 };
 
-function opendb(callback) {
+function installDB(callback) {
     try {
         if (SQLITE.prototype.dbclient == null) {
-            SQLITE.prototype.dbclient = new sqlite.Database(dbName);
-            fs.readFile(createSql, "utf8", function (err, data) {
-                if (!err) {
-                    SQLITE.prototype.dbclient.exec(data, function (createerr) {
-                        if (!createerr) {
-                            callback(true);
-                        }
-                    });
-                }
-            });
-        } else {
-            callback(true);
+            SQLITE.prototype.dbclient = new sqlite.Database(dbName)
         }
+        fs.readFile(createSql, "utf8", function (err, data) {
+            if (!err) {
+                SQLITE.prototype.dbclient.exec(data, function (createerr) {
+                    if (!createerr) {
+                        closeDb();
+                        console.log(1)
+                        callback(true);
+                    }else{
+                        util.error(createerr);
+                    }
+                });
+            }else{
+                callback(false);
+            }
+        });
     } catch (e) {
         util.error(e);
         callback(false);
     }
+}
+
+function openDB () {
+    SQLITE.prototype.dbclient = new sqlite.Database(dbName);
 }
 
 function closeDb() {

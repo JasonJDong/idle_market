@@ -9,11 +9,11 @@ var async = require('async');
 var uuid = require('uuid');
 var config = require('./config');
 var crypto = require('crypto');
-var sqliteClass = require('./sqliteutil').Sqlite;
 var moduleType = require('./sqliteutil').moduleType;
+var sqliteClass = require('./sqliteutil').Sqlite;
 
-sqlite = new sqliteClass();
-sqlite.load();
+var sqlite = new sqliteClass();
+sqlite.open();
 
 var util = require('util')
 
@@ -65,7 +65,8 @@ app.get('/buyitem/:page/:count', function (req, res) {
 
 app.post('/buyitem', function (req, res) {
   var data = req.body;
-  sqlite.buyItem(data.user, data.content, data.tags, data.id, function (results) {
+  data.password = data.password || uuid.v4();
+  sqlite.buyItem(data.user, data.content, data.tags, data.password, data.pictureUrl, data.id, function (results) {
     var code = !results ? 200: 400;
     res.send(code);
     res.end();
@@ -81,11 +82,18 @@ app.get('/sellitem/:page/:count', function (req, res) {
 
 app.post('/sellitem', function (req, res) {
   var data = req.body;
-  sqlite.sellItem(data.user, data.content, data.tags, data.id, function (results) {
+  data.password = data.password || uuid.v4();
+  console.log(data)
+  sqlite.sellItem(data.user, data.content, data.tags, data.password, data.pictureUrl ,data.id, function (results) {
+    console.log(results)
     var code = !results ? 200: 400;
     res.send(code);
     res.end();
   });
+});
+
+app.post('/file/upload', function (req, res) {
+  res.end()
 });
 
 app.post('/login', function (req, res) {
@@ -129,7 +137,7 @@ app.get('/search', function (req, res) {
   try{
     var parsedUrl = url.parse(req.url, true);
     var term = parsedUrl.query.q;
-    var buyOrSell = parseInt(parsedUrl.query.type);
+    var buyOrSell = parseInt(parsedUrl.query.qt);
     if (!term) {
       throw new Exception();
     }

@@ -3,26 +3,39 @@
 		<span class='sellBuy-title'>{{sellBuyTitle}}</span>
 		<span class='close' ng-click='closeSelf()'>×</span>
 	</div>
+	<span class='sellBuy-description'><i class='icon-exclamation-sign'></i>
+			亲，设置密码才能在下次编辑哦！
+	</span>
 	<div class='sellBuy-user-info'>
-		<span class='sellBuy-description'><i class='icon-key'></i></span>
 		<label class="inline clearfix">
-			<span class="inline input-icon input-icon-right">
-				<input type="text" id='username' class="form-control" placeholder="User" ng-model="item.user"/>
+			<span class="inline input-icon input-icon-right full-width">
+				<input type="text" id='username' class="form-control" placeholder="Who are you?" ng-model="selectedItem.user"/>
 				<i class="icon-user"></i>   
 			</span>
 		</label>
-		<label class="inline clearfix">
-			<span class="inline input-icon input-icon-right">
-				<input type="password" id='username' class="form-control" placeholder="Password" ng-model="item.password"/>
+		<label class="inline clearfix go-right">
+			<span class="inline input-icon input-icon-right full-width">
+				<input type="password" id='username' class="form-control" placeholder="Password" ng-model="selectedItem.password"/>
 				<i class="icon-lock"></i>   
 			</span>
 		</label>
 	</div>
+	<div>
+		<input type='text' placeholder='Tag标签：请用空格分隔...' style='font-style: Italic;width: 100%;margin-bottom:7px' ng-model='selectedItem.tagsString'>
+	</div>
 	<div class='sellBuy-item-content'>
-		<textarea class='sellBuy-item-content-input' ng-model='item.content'></textarea>
+		<textarea class='sellBuy-item-content-input' ng-model='selectedItem.content'></textarea>
+	</div>
+	<div class='upload-thumbnail'>
+		<div class='upload-region'>
+			<input type='file' id='fileUploader' name='file' style='display:inline-block;vertical-align: middle;'>
+			<input class='btn btn-info' type='button' value='上传' style='float:right' ng-click='uploadFile()'>
+		</div>
 	</div>
 	<div class='sellBuy-ok-cancel'>
-		<span class='sellBuy-cancel'>取消</span>
-		<button class='btn btn-info' ng-click='sellBuy()'><i class='icon-ok'></i>确定</button>
+		<span class='sellBuy-delete' ng-click='deleteMe()' ng-show='item.id'>删除</span>
+		<span ng-show='shouldNotifyResponse' ng-bind='notifyResponseMessage'></span>
+		<span class='sellBuy-cancel' ng-click='closeSelf()'>取消</span>
+		<button class='btn btn-info' ng-click='sellBuy()' ng-disabled='!canCreateItem || working'><i class='icon-ok'></i>确定</button>
 	</div>
 </div>

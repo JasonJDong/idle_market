@@ -3,6 +3,10 @@ html{
   height: 100%;
 }
 
+ul{
+  list-style: none;
+}
+
 div.view-container{
   height: 100%;
 }
@@ -397,7 +401,7 @@ h5 img{
   margin-left: 569px;
 }
 
-.sell-title-container{
+.sellBuy-title-container{
   width: 100%;
 }
 
@@ -429,6 +433,12 @@ h5 img{
   float: right;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.popover-parent{
+  display: inline-block !important;
+  margin-right: 12px;
+  height: 100%
 }
 
 .sell-content{
@@ -494,4 +504,108 @@ h5 img{
   vertical-align: bottom;
   float: right;
   margin-top: 9px;
+  font-size: 80%
+}
+
+.edit-item{
+  margin-right: 4px;
+}
+
+.edit-item:hover{
+  opacity: 0.6;
+  filter:(alpha=0.6);
+  cursor: pointer;
+}
+
+.sellBuy-user-info{
+  display: block;
+  width: 100%;
+}
+
+.sellBuy-user-info > label{
+  font-size: 80%;
+  width: 45%;
+  margin: 6px 3px 7px 8px;
+}
+
+.sellBuy-description{
+  font-size: 80%;
+  display: block;
+}
+
+.sellBuy-ok-cancel{
+  float: right;
+  display: block;
+  vertical-align: bottom;
+  margin: 15px 0px 15px 0px;
+}
+
+.sellBuy-cancel{
+  margin-right: 7px;
+  line-height: 8px;
+}
+
+.sellBuy-delete{
+  display: inline-block;
+  margin-right: 20px;
+  color: #d9534f;
+}
+
+.sellBuy-cancel:hover, .sellBuy-delete:hover{
+  cursor: pointer;
+  opacity: 0.5;
+  filter:(alpha=0.5);
+}
+.sellBuy-item-content-input{
+  min-height: 220px;
+  min-width: 580px;
+}
+
+.go-right{
+  float: right;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.refresher{
+  display: block;
+  vertical-align: middle;
+}
+
+.search-remove{
+  margin-right: 24px;
+  opacity: 0.8;
+  filter:(alpha=0.8);
+}
+
+.search-remove:hover{
+  cursor: pointer;
+  opacity: 0.5;
+  filter: (alpha=0.5);
+}
+
+.default-thumbnail-container{
+  border: 1px solid #ccc;
+  width: 128px;
+  height:128px;
+  float:left;
+  margin-right: 5px;
+}
+
+.default-thumbnail{
+  vertical-align: middle;
+  position: relative;
+  top: 45%;
+  display: block;
+}
+
+.upload-region{
+  border: 1px solid #ccc;
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 34px;
 }
