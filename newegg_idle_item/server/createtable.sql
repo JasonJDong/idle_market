@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS userMeta (
 
 CREATE TABLE IF NOT EXISTS toBuy (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
+    guid varchar(32),
     user varchar(20),
     content TEXT,
     datetime INTEGER,
@@ -21,6 +22,7 @@ CREATE TABLE IF NOT EXISTS toBuy (
 
 CREATE TABLE IF NOT EXISTS toSell (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
+    guid varchar(32),
     user varchar(40),
     content TEXT,
     datetime INTEGER,

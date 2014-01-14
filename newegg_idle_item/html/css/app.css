@@ -484,6 +484,10 @@ h5 img{
   line-height: 18px;
 }
 
+/*.item:hover{
+  background-color: #dff0d8;
+}*/
+
 .item-content{
   display: block;
   font-size: 18px;
@@ -551,7 +555,11 @@ h5 img{
   color: #d9534f;
 }
 
-.sellBuy-cancel:hover, .sellBuy-delete:hover{
+.sellBuy-delete-cancel{
+  color: #5bc0de;
+}
+
+.sellBuy-cancel:hover, .sellBuy-delete:hover, .sellBuy-delete-cancel:hover{
   cursor: pointer;
   opacity: 0.5;
   filter:(alpha=0.5);
@@ -608,4 +616,8 @@ h5 img{
   margin-top: 5px;
   margin-bottom: 5px;
   height: 34px;
+}
+
+.notify-message{
+  margin-right: 15px; 
 }

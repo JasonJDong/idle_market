@@ -12,11 +12,11 @@ itemService.service('ItemService', [
 			cache: false,
 			data: item
 		})
-		.success(function () {
-			callback(true);
+		.success(function (respData) {
+			callback(true, respData);
 		})
 		.error(function () {
-			callback(false);
+			callback(false, null);
 		})
 	}
 
@@ -27,11 +27,11 @@ itemService.service('ItemService', [
 			cache: false,
 			data: item
 		})
-		.success(function () {
-			callback(true);
+		.success(function (respData) {
+			callback(true, respData);
 		})
 		.error(function () {
-			callback(false);
+			callback(false, null);
 		})
 	}
 
@@ -90,11 +90,32 @@ itemService.service('ItemService', [
 		})
 	}
 
+	var deleteItem = function (guid, password, type, callback) {
+		var preUri = '';
+		if (type.indexOf('sell') > -1) {
+			preUri = '/sellitem/';
+		}else if(type.indexOf('buy') > -1){
+			preUri = '/buyitem/';
+		}
+		$http({
+			method: 'DELETE',
+			url: UtilsService.getBaseUrl() + preUri + btoa(guid + ":" + password),
+			cache: false,
+		})
+		.success(function (result) {
+			callback(result);
+		})
+		.error(function () {
+			callback(null);
+		})
+	}
+
 	return {
 		buyItem: buyItem,
 		sellItem: sellItem,
 		queryBuyItem: queryBuyItem,
 		querySellItem: querySellItem,
-		searchItem: searchItem
+		searchItem: searchItem,
+		deleteItem: deleteItem
 	}
 }])

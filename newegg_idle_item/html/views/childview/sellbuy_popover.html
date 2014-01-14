@@ -15,7 +15,7 @@
 		</label>
 		<label class="inline clearfix go-right">
 			<span class="inline input-icon input-icon-right full-width">
-				<input type="password" id='username' class="form-control" placeholder="Password" ng-model="selectedItem.password"/>
+				<input type="password" id='username' class="form-control" placeholder="Password" ng-model="password"/>
 				<i class="icon-lock"></i>   
 			</span>
 		</label>
@@ -33,9 +33,11 @@
 		</div>
 	</div>
 	<div class='sellBuy-ok-cancel'>
-		<span class='sellBuy-delete' ng-click='deleteMe()' ng-show='item.id'>删除</span>
-		<span ng-show='shouldNotifyResponse' ng-bind='notifyResponseMessage'></span>
-		<span class='sellBuy-cancel' ng-click='closeSelf()'>取消</span>
-		<button class='btn btn-info' ng-click='sellBuy()' ng-disabled='!canCreateItem || working'><i class='icon-ok'></i>确定</button>
+		<span ng-show='shouldNotifyResponse' ng-bind='notifyResponseMessage' class='notify-message'></span>
+		<span class='sellBuy-delete' ng-click='enterDeleteMode()' ng-show='item.id' ng-hide='deleteMode'>删除</span>
+		<span class='sellBuy-cancel' ng-click='closeSelf()' ng-hide='deleteMode'>取消</span>
+		<button class='btn btn-info' ng-click='sellBuy()' ng-hide='deleteMode' ng-disabled='!canCreateItem || working'><i class='icon-ok'></i>{{submitText}}</button>
+		<span class='sellBuy-delete' ng-click='deleteMe()' ng-show='deleteMode'><small>是！</small></span>
+		<span class='sellBuy-delete-cancel' ng-click='leaveDeleteMode()' ng-show='deleteMode'>不，谢谢！</span>
 	</div>
 </div>

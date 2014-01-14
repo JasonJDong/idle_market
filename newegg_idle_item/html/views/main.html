@@ -1,7 +1,7 @@
 <div class="main-container">
 	<div class="main-content">
 		<div class='top-content'>
-			<img src="image/bananer.png" width='510' height='168' class='bananer'>
+			<img src="image/bananer1.png" width='510' height='168' class='bananer'>
 			<div class='login-bar' ng-hide='true'>
 				<label class="inline clearfix">
 					<span class="inline input-icon input-icon-right">
@@ -69,7 +69,7 @@
                                     <span class='item-info1'>{{item.user}}</span>
             						<span class='item-info2'><div class='popover-parent' tag='popover-parent' data-request='sell-edit'><i class='icon-edit bigger-140 edit-item' ng-show='item.canShowEditor' ng-click='editSellItem(item)' bs-popover="'views/childview/sellbuy_popover.html'" data-unique='1' data-placement='right'></i></div><span>{{item.datetime | datetimeFormat}}</span></span>
             					</li>
-                                <li><div><i class='icon-refresh icon-spin bigger-140 refresher' ng-show='loadingMore'></i></div></li>
+                                <li><div><i class='icon-refresh icon-spin bigger-140 refresher' ng-show='loadingMoreSell'>努力加载...</i></div></li>
                             </ul>
         				</div>
         			</li>
@@ -95,16 +95,16 @@
         			<li>
         				<div class='show-items' buy-scroll-more>
                             <ul>    
-                                <li ng-repeat='item in buyItems' class='item' ng-mouseenter='itemHover(item)' ng-mouseleave='itemleave(item)'>
+                                <li ng-repeat='item in buyItems' class='item' ng-mouseenter='itemHover(item)' ng-mouseleave='itemLeave(item)'>
                                     <img ng-src='{{item.picturlUrl}}' width='128' height='128' ng-hide='!item.picturlUrl'>
                                     <div class='default-thumbnail-container' ng-show='!item.picturlUrl'>
                                     <i class='icon-picture default-thumbnail'></i>
                                     </div>
                                     <textarea class='item-content' ng-model='item.content' ng-readonly='true' ng-disabled='true'></textarea>
                                     <span class='item-info1'>{{item.user}}</span>
-                                    <span class='item-info2'><div class='popover-parent' tag='popover-parent' data-request='buy-edit'><i class='icon-edit bigger-140 edit-item' ng-show='item.canShowEditor' ng-click='editBuyItem(item)' bs-popover="'views/childview/sellbuy_popover.html'" data-unique='1' data-placement='left'></i><div>{{item.datetime | datetimeFormat}}</span>
+                                    <span class='item-info2'><div class='popover-parent' tag='popover-parent' data-request='buy-edit'><i class='icon-edit bigger-140 edit-item' ng-show='item.canShowEditor' ng-click='editBuyItem(item)' bs-popover="'views/childview/sellbuy_popover.html'" data-unique='1' data-placement='left'></i></div><span>{{item.datetime | datetimeFormat}}</span></span>
                                 </li>
-                                <li><div><i class='icon-refresh icon-spin bigger-140 refresher' ng-show='loadingMore'></i></div></li>
+                                <li><div><i class='icon-refresh icon-spin bigger-140 refresher' ng-show='loadingMoreBuy'>努力加载...</i></div></li>
                             </ul>
         				</div>
         			</li>

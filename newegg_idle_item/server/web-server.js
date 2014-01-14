@@ -16,6 +16,7 @@ var sqlite = new sqliteClass();
 sqlite.open();
 
 var util = require('util')
+var utils = require('./util')
 
 var app = express();
 var DEFAULT_PORT = config.listenPort || 9000;
@@ -56,6 +57,10 @@ app.get('/', function (req, res) {
     res.end();
 });
 
+app.post('/fileupload', function (req, res) {
+  // body...
+});
+
 app.get('/buyitem/:page/:count', function (req, res) {
   sqlite.getItems(req.params.count, req.params.page, moduleType.buy, function (results) {
     res.send(results);
@@ -66,12 +71,45 @@ app.get('/buyitem/:page/:count', function (req, res) {
 app.post('/buyitem', function (req, res) {
   var data = req.body;
   data.password = data.password || uuid.v4();
-  sqlite.buyItem(data.user, data.content, data.tags, data.password, data.pictureUrl, data.id, function (results) {
-    var code = !results ? 200: 400;
-    res.send(code);
-    res.end();
+  sqlite.buyItem(data.user, data.content, data.tags, data.password, data.pictureUrl, data.guid, function (err, cbData) {
+    if (err) {
+      res.send(500);
+      res.end();
+    }else{
+      cbData.changes = cbData.changes || 0;
+      cbData.updated = cbData.changes != 0;
+      res.send(cbData);
+      res.end()
+    }
   });
 });
+
+app.delete('/buyitem/:guidpwd', function (req, res) {
+  deleteItem(req, res, moduleType.buy);
+});
+
+function deleteItem(req, res, moduleType) {
+  try{
+    var guidpwd = new Buffer(req.params.guidpwd, 'base64').toString('utf8').split(':');
+    var password = guidpwd.pop();
+    var guid = guidpwd.pop();
+    sqlite.deleteitem(guid, password, moduleType, function (err, cbData) {
+      if (err) {
+        res.send(500);
+        res.end();
+      }else{
+        cbData.changes = cbData.changes || 0;
+        cbData.deleted = cbData.changes != 0;
+        res.send(cbData);
+        res.end()
+      }
+    });
+  }
+  catch(e){
+    res.send(405);
+    res.end();
+  }
+}
 
 app.get('/sellitem/:page/:count', function (req, res) {
   sqlite.getItems(req.params.count, req.params.page, moduleType.sell, function (results) {
@@ -83,13 +121,21 @@ app.get('/sellitem/:page/:count', function (req, res) {
 app.post('/sellitem', function (req, res) {
   var data = req.body;
   data.password = data.password || uuid.v4();
-  console.log(data)
-  sqlite.sellItem(data.user, data.content, data.tags, data.password, data.pictureUrl ,data.id, function (results) {
-    console.log(results)
-    var code = !results ? 200: 400;
-    res.send(code);
-    res.end();
+  sqlite.sellItem(data.user, data.content, data.tags, data.password, data.pictureUrl ,data.guid, function (err, cbData) {
+    if (err) {
+      res.send(500);
+      res.end();
+    }else{
+      cbData.changes = cbData.changes || 0;
+      cbData.updated = cbData.changes != 0;
+      res.send(cbData);
+      res.end()
+    }
   });
+});
+
+app.delete('/sellitem/:guidpwd', function (req, res) {
+  deleteItem(req, res, moduleType.sell);
 });
 
 app.post('/file/upload', function (req, res) {
@@ -189,7 +235,7 @@ var getFile = function (fPath, res, setCache) {
     fs.exists(fPath, function (exists) {
       if (!exists) {
         console.log(fPath)
-        fPath = path.join(__dirname, 'views/error/404.html');
+        fPath = path.join(config.home, 'views/error/404.html');
         res.setHeader('Content-Type', 'text/html');
         res.setHeader('Cache-Control', 'no-cache');
       }
