@@ -58,7 +58,28 @@ app.get('/', function (req, res) {
 });
 
 app.post('/fileupload', function (req, res) {
-  // body...
+  try{
+    var count = req.files.files.length;
+    res.setHeader('Content-Type', 'application/json');
+    req.files.files.forEach(function (file) {
+      generateRandomFilePath(file.name, file.path, function (pathData) {
+        var resData = {
+          success: true,
+          pictureUrl: pathData.relativePath
+        }
+        if (!pathData.exists) {
+          fs.createReadStream(file.path).pipe(fs.createWriteStream(pathData.absolutePath));
+        }
+        res.write(JSON.stringify(resData));
+        if (--count <= 0) res.end();
+      });
+    });
+  }
+  catch(e){
+        console.log(e)
+    res.send({success: false})
+    res.end()
+  }
 });
 
 app.get('/buyitem/:page/:count', function (req, res) {
@@ -265,6 +286,11 @@ var getEncodePath = function (path) {
   return encodeParams.join('/');
 }
 
+var getExtension = function (path) {
+  var pathParams = path.split('.');
+  return '.' + pathParams.pop();
+}
+
 var setResponseCache = function (res) {
     res.setHeader('Cache-Control', "max-age=" + 3600);
     var date = new Date();
@@ -294,6 +320,33 @@ var serverInternalError = function (res) {
 var severCanotResolve = function (res) {
   res.send(400);
   res.end();
+}
+
+var generateRandomFilePath = function (originalName, expressTempFile, callback) {
+  var readStream = fs.createReadStream(expressTempFile)
+  var data = null;
+  var pathData = null;
+  readStream.on('data', function (chunk) {
+    if(chunk) data+=chunk;
+  });
+
+  readStream.on('end', function () {
+    var guid = utils.cryptoBuffer(data);
+    pathData = {
+      absolutePath: path.join(config.home, 'public', 'upload', guid + getExtension(originalName)),
+      relativePath: path.join('public', 'upload', guid + getExtension(originalName)),
+      exists: false
+    };
+    fs.exists(pathData.absolutePath, function (exists) {
+      if (exists) {
+        pathData.exists = true;
+      }
+    });
+  })
+
+  readStream.on('close', function () {
+    callback(pathData)
+  });
 }
 
 exports.start = function () {

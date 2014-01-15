@@ -453,3 +453,61 @@
     at Object.router (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
     at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
     at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [ReferenceError: cbData is not defined] __augmented: true }
+[2014-01-15 15:07:05.462] [ERROR] errors - web server uncaughtException :  Arguments to path.join must be strings 
+ type: undefined 
+ arguments: undefined 
+ stack:  TypeError: Arguments to path.join must be strings
+    at f (path.js:204:15)
+    at Object.filter (native)
+    at Object.exports.join (path.js:209:40)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:67:28
+    at Object.oncomplete (fs.js:107:15) [TypeError: Arguments to path.join must be strings]
+[2014-01-15 15:07:07.753] [ERROR] errors - web server uncaughtException :  Arguments to path.join must be strings 
+ type: undefined 
+ arguments: undefined 
+ stack:  TypeError: Arguments to path.join must be strings
+    at f (path.js:204:15)
+    at Object.filter (native)
+    at Object.exports.join (path.js:209:40)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:67:28
+    at Object.oncomplete (fs.js:107:15) [TypeError: Arguments to path.join must be strings]
+[2014-01-15 19:47:46.539] [ERROR] errors - web server uncaughtException :  absolutePath is not defined 
+ type: not_defined 
+ arguments: object 
+ stack:  ReferenceError: absolutePath is not defined
+    at ReadStream.<anonymous> (D:\git\idle_market\newegg_idle_item\server\web-server.js:338:15)
+    at ReadStream.EventEmitter.emit (events.js:117:20)
+    at _stream_readable.js:895:16
+    at process._tickCallback (node.js:415:13) [ReferenceError: absolutePath is not defined]
+[2014-01-15 19:49:28.142] [ERROR] errors - web server uncaughtException :  first argument must be a string or Buffer 
+ type: undefined 
+ arguments: undefined 
+ stack:  TypeError: first argument must be a string or Buffer
+    at ServerResponse.OutgoingMessage.write (http.js:780:11)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:72:13
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:342:7
+    at Object.cb [as oncomplete] (fs.js:168:19) [TypeError: first argument must be a string or Buffer]
+[2014-01-15 19:50:18.785] [ERROR] errors - web server uncaughtException :  first argument must be a string or Buffer 
+ type: undefined 
+ arguments: undefined 
+ stack:  TypeError: first argument must be a string or Buffer
+    at ServerResponse.OutgoingMessage.write (http.js:780:11)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:72:13
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:343:7
+    at Object.cb [as oncomplete] (fs.js:168:19) [TypeError: first argument must be a string or Buffer]
+[2014-01-15 19:51:14.877] [ERROR] errors - web server uncaughtException :  first argument must be a string or Buffer 
+ type: undefined 
+ arguments: undefined 
+ stack:  TypeError: first argument must be a string or Buffer
+    at ServerResponse.OutgoingMessage.write (http.js:780:11)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:72:13
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:343:7
+    at Object.cb [as oncomplete] (fs.js:168:19) [TypeError: first argument must be a string or Buffer]
+[2014-01-15 19:53:08.345] [ERROR] errors - web server uncaughtException :  first argument must be a string or Buffer 
+ type: undefined 
+ arguments: undefined 
+ stack:  TypeError: first argument must be a string or Buffer
+    at ServerResponse.OutgoingMessage.write (http.js:780:11)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:72:13
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:343:7
+    at Object.cb [as oncomplete] (fs.js:168:19) [TypeError: first argument must be a string or Buffer]

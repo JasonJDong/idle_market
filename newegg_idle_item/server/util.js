@@ -34,7 +34,14 @@ exports.uuid = function () {
 };
 
 exports.cryptoString = function (str) {
-    var sha256Provider = crypto.createHash('md5');
-    sha256Provider.update(str);
+    var md5Provider = crypto.createHash('md5');
+    md5Provider.update(str);
+    return md5Provider.digest('hex');
+}
+
+exports.cryptoBuffer = function (buf) {
+    var sha256Provider = crypto.createHash('sha256');
+    sha256Provider.update(buf, 'binary');
     return sha256Provider.digest('hex');
 }
+
