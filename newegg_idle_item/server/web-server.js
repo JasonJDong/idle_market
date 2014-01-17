@@ -11,6 +11,7 @@ var config = require('./config');
 var crypto = require('crypto');
 var moduleType = require('./sqliteutil').moduleType;
 var sqliteClass = require('./sqliteutil').Sqlite;
+var monitorManager = require('./monitor_manager');
 
 var sqlite = new sqliteClass();
 sqlite.open();
@@ -91,6 +92,7 @@ app.get('/buyitem/:page/:count', function (req, res) {
 app.post('/buyitem', function (req, res) {
   var data = req.body;
   data.password = data.password || uuid.v4();
+  var action = data.guid ? 'update' : 'add';
   sqlite.buyItem(data.user, data.content, data.tags, data.password, data.pictureUrl, data.guid, function (err, cbData) {
     if (err) {
       res.send(500);
@@ -98,6 +100,9 @@ app.post('/buyitem', function (req, res) {
     }else{
       cbData.changes = cbData.changes || 0;
       cbData.updated = cbData.changes != 0;
+      if (cbData.updated) {
+        monitorManager.notifyChanges(data, action + '_sell_item')
+      };
       res.send(cbData);
       res.end()
     }
@@ -120,6 +125,9 @@ function deleteItem(req, res, moduleType) {
       }else{
         cbData.changes = cbData.changes || 0;
         cbData.deleted = cbData.changes != 0;
+        if (cbData.deleted) {
+          monitorManager.notifyChanges(guid, 'del_' + moduleType.toLowerCase() + '_item')
+        };
         res.send(cbData);
         res.end()
       }
@@ -141,6 +149,7 @@ app.get('/sellitem/:page/:count', function (req, res) {
 app.post('/sellitem', function (req, res) {
   var data = req.body;
   data.password = data.password || uuid.v4();
+  var action = data.guid ? 'update' : 'add';
   sqlite.sellItem(data.user, data.content, data.tags, data.password, data.pictureUrl ,data.guid, function (err, cbData) {
     if (err) {
       res.send(500);
@@ -148,6 +157,9 @@ app.post('/sellitem', function (req, res) {
     }else{
       cbData.changes = cbData.changes || 0;
       cbData.updated = cbData.changes != 0;
+      if (cbData.updated) {
+        monitorManager.notifyChanges(data, action + '_buy_item')
+      };
       res.send(cbData);
       res.end()
     }
@@ -156,10 +168,6 @@ app.post('/sellitem', function (req, res) {
 
 app.delete('/sellitem/:guidpwd', function (req, res) {
   deleteItem(req, res, moduleType.sell);
-});
-
-app.post('/file/upload', function (req, res) {
-  res.end()
 });
 
 app.post('/login', function (req, res) {
@@ -217,6 +225,12 @@ app.get('/search', function (req, res) {
     res.send(404);
     res.end();
   }
+})
+
+app.get('/sync', function (req, res) {
+  var parsedUrl = url.parse(req.url, true);
+  // var mtime = parsedUrl.query.mtime;
+  monitorManager.appendMonitor(res, new Date().valueOf());
 })
 
 app.get('/*', function (req, res) {

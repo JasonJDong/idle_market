@@ -110,12 +110,36 @@ itemService.service('ItemService', [
 		})
 	}
 
+	var sync = function (immdiately, add, update, _delete) {
+		$http({
+			method: 'GET',
+			url: UtilsService.getBaseUrl() + '/sync',
+			cache: false,
+			timeout: 60 * 2 * 1000
+		})
+		.success(function (result) {
+			immdiately();
+			var changeType = result.changeType.split('_');
+			var action = changeType.shift();
+			var module = changeType.shift();
+			if (action == 'add' && add) add(module);
+			if (action == 'update' && update) update(result.item, module);
+			if (action == 'delete' && _delete) _delete(result.item, module);
+		})
+		.error(function () {
+			if (add) add();
+			if (update) update();
+			if (_delete) _delete();
+		})
+	}
+
 	return {
 		buyItem: buyItem,
 		sellItem: sellItem,
 		queryBuyItem: queryBuyItem,
 		querySellItem: querySellItem,
 		searchItem: searchItem,
-		deleteItem: deleteItem
+		deleteItem: deleteItem,
+		sync: sync
 	}
 }])

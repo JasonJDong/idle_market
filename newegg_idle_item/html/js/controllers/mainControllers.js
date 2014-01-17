@@ -190,4 +190,86 @@ mainControllers.controller('MainCtrl', [
 			}
 		}
 
+		function doUpdateItem (item, src) {
+			angular.forEach(src, function (_item) {
+				if (_item.guid === item.guid) {
+					_item = item;
+					return;
+				}
+			});
+		}
+
+		function doDeleteItem (guid, src) {
+			var find = false;
+			var i = 0;
+			for (; i < src.length; i++) {
+				if(src[i].guid == guid){
+					break;
+				}
+			}
+			if (find) src.splice(i, 1);
+		}
+
+		function addItem (module) {
+			$scope.addedSellItem = $scope.addedSellItem || 0;
+			$scope.addedBuyItem = $scope.addedBuyItem || 0;
+			var moduleType = module == 'toSell' ? '售卖':'求购'; 
+			switch(module){
+				case 'toSell':
+					$scope.addedSellItem += 1;
+					$scope.sellNotify = '有 ' + $scope.addedSellItem + ' 条新' + moduleType + '消息！';
+					break;
+				case 'toBuy':
+					$scope.addedBuyItem += 1;
+					$scope.buyNotify = '有 ' + $scope.addedSellItem + ' 条新' + moduleType + '消息！';
+					break;
+			}
+		}
+
+		function updateItem (item, module) {
+			switch(module){
+				case 'toSell':
+					doUpdateItem(item, $scope.sellItems);
+					doUpdateItem(item, $scope.originalSellItems);
+					break;
+				case 'toBuy':
+					doUpdateItem(item, $scope.buyItems);
+					doUpdateItem(item, $scope.originalBuyItems);
+					break;
+			}
+		}
+
+		function deleteItem (guid, module) {
+			switch(module){
+				case 'toSell':
+					doDeleteItem(guid, $scope.sellItems);
+					doDeleteItem(guid, $scope.originalSellItems);
+					break;
+				case 'toBuy':
+					doDeleteItem(guid, $scope.buyItems);
+					doDeleteItem(guid, $scope.originalBuyItems)
+					break;;
+			}
+		}
+
+		function immdiately () {
+			ItemService.sync(immdiately, addItem, updateItem, deleteItem);
+		}
+
+		//ItemService.sync(immdiately, addItem, updateItem, deleteItem);
+
+		$scope.uploadBuy = function () {
+			ItemService.queryBuyItem($scope.addedBuyItem, 0, function (items) {
+				// body...
+				$scope.addedBuyItem = 0;
+			});
+		}
+
+		$scope.uploadSell = function () {
+			ItemService.querySellItem($scope.addedSellItem, 0, function (items) {
+				// body...
+				$scope.addedSellItem = 0;
+			});
+		}
+
 }]);

@@ -179,7 +179,7 @@ var SQLITE = function () {
         }
     }
 
-    this.getItemByGuid = function (guid, type,callback) {
+    this.getItemByGuid = function (guid, type, callback) {
         if (SQLITE.prototype.dbclient != null) {
             var sqlStr = "SELECT id, guid, user, content, datetime, pictureUrl, tag1, tag2, tag3, tag4, tag5 FROM " + type + 
                         " WHERE guid = ?";
