@@ -28,13 +28,21 @@
 	</div>
 	<div class='upload-thumbnail'>
 		<div class='upload-region'>
-			<input type='file' id='fileUploader' name='file' style='display:inline-block;vertical-align: middle;'>
-			<input class='btn btn-info' type='button' value='上传' style='float:right' ng-click='uploadFile()'>
+			<span class='btn btn-info fileinput-button' ng-hide='uploading'>
+				<i class="glyphicon glyphicon-plus"></i>
+				<span>选择图片...</span>
+				<input type='file' id='fileupload' name='files[]' style='display:inline-block;vertical-align: middle;' >
+				<span>{{currentSelectedFileName}}</span>
+			</span>
+			<button id='uploadbtn' class='btn btn-info' style='float:right' ng-disabled='uploading' ng-click='uploadFile()'><i class='icon-refresh icon-spin' ng-show='uploading'></i>上传</button>
 		</div>
+	</div>
+	<div>
+		<img ng-src="{{selectedItem.pictureUrl}}" ng-show='selectedItem.pictureUrl' width='32' height='32'>
 	</div>
 	<div class='sellBuy-ok-cancel'>
 		<span ng-show='shouldNotifyResponse' ng-bind='notifyResponseMessage' class='notify-message'></span>
-		<span class='sellBuy-delete' ng-click='enterDeleteMode()' ng-show='item.id' ng-hide='deleteMode'>删除</span>
+		<span class='sellBuy-delete' ng-click='enterDeleteMode()' ng-show='selectedItem.guid && !deleteMode'>删除</span>
 		<span class='sellBuy-cancel' ng-click='closeSelf()' ng-hide='deleteMode'>取消</span>
 		<button class='btn btn-info' ng-click='sellBuy()' ng-hide='deleteMode' ng-disabled='!canCreateItem || working'><i class='icon-ok'></i>{{submitText}}</button>
 		<span class='sellBuy-delete' ng-click='deleteMe()' ng-show='deleteMode'><small>是！</small></span>

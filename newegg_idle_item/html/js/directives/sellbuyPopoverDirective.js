@@ -1,7 +1,8 @@
 mainControllers.directive('sellbuyPopover', [
 	'$timeout',
 	'ItemService',
-	function ($timeout, ItemService) {
+	'UtilsService',
+	function ($timeout, ItemService, UtilsService) {
 	return {
 		restrict: 'A',
 		controller: function ($scope) {
@@ -66,6 +67,14 @@ mainControllers.directive('sellbuyPopover', [
 				);
 			}
 
+			$scope.uploadFile = function () {
+				if (!$scope.currentSelectedFile) {
+					responseWork('未选择任何文件！');				
+					return;
+				}
+				$('#fileupload').fileupload('send', {files: [$scope.currentSelectedFile]});
+			}
+
 			function responseWork (msg) {
 				$scope.shouldNotifyResponse = true;
 				$scope.notifyResponseMessage = msg;
@@ -75,14 +84,32 @@ mainControllers.directive('sellbuyPopover', [
 				}, 20*1000)
 			}
 
+			$scope.responseWork = responseWork;
+
 			$scope.sellBuy = function () {
 				if ($scope.request == 'sell' || $scope.request == 'sell-edit') sellNewItem();
 				if ($scope.request == 'buy' || $scope.request == 'buy-edit') buyNewItem();
 			}
 
-			$scope.uploadFile = function () {
-				var file = $('#fileUploader')[0].files[0];
+			function upldateItem (guid, options) {
+				if (guid) {
+					if ($scope.request == 'sell-edit') {
+						$scope.sellItems = $scope.updateItems(guid, $scope.sellItems, options);
+					}else if($scope.request == 'buy-edit'){
+						$scope.buyItems = $scope.updateItems(guid, $scope.buyItems, options);
+					}
+				}
+			}
 
+			$scope.updateItems = function  (guid, srcItems, options) {
+				angular.forEach(srcItems, function (item) {
+					if (item.guid === guid) {
+						$.each(options, function  (key, value) {
+							item[key] = value;
+						});
+					}
+				});
+				return srcItems;
 			}
 
 			$scope.deleteMe = function () {
@@ -131,6 +158,9 @@ mainControllers.directive('sellbuyPopover', [
 
 			if ($scope.request == 'sell' || $scope.request == 'buy') {
 				$scope.selectedItem = {tags: []};
+				$scope.currentSelectedFile = null;
+				$scope.currentSelectedFileName = '';
+				$scope.leaveDeleteMode();
 			}else{
 				if ($scope.selectedItem) {
 					$scope.selectedItem.tags = new Array();
@@ -142,6 +172,47 @@ mainControllers.directive('sellbuyPopover', [
 					$scope.selectedItem.tagsString = $scope.selectedItem.tags.join(' ');
 				}
 			}
+
+			$('#fileupload').fileupload({
+				url: UtilsService.getBaseUrl() + '/fileupload',
+				acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+				maxNumberOfFiles: 1,
+				autoUpload: false,
+				maxFileSize: 1024 * 1024 * 1024 * 10,
+				limitMultiFileUploads: 1,
+				done: function(e, data){
+					if (data.result && typeof data.result === 'string') {
+						data.result = angular.toJson(data.result);
+					};
+					var msg = data.result && data.result.success ? '上传成功！- 记得更新才能保存哦！' : '上传失败！';
+					$scope.responseWork(msg);
+					$scope.uploading = false;
+					$scope.selectedItem.pictureUrl = data.result.pictureUrl;
+					$('#fileupload').find('input:file').removeAttr('disabled');
+					//upldateItem($scope.selectedItem.guid, {pictureUrl: data.result.pictureUrl})
+				},
+				// add: function (e, data) {
+				// 	// var $this = $(this);
+				// 	$('#uploadbtn').bind('click', function () {
+				// 		if (!$scope.uploading) {
+				// 			// if ($this[0].files.length > 0) {
+				// 				// data.files = new Array();
+				// 				// data.files.push($this[0].files[0]);
+				// 				data.submit();
+				// 			// }
+				// 		}
+				// 	});
+				// },
+				start: function (e) {
+					$scope.uploading = true;
+				}
+			})
+			.on('change', function (evt) {
+				var $this = $(this);
+				$scope.currentSelectedFile = $this[0].files[0];
+				$scope.currentSelectedFileName = ' - ' + $this[0].files[0].name;
+			});
+
 			return element;
 		}
 

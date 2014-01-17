@@ -152,7 +152,7 @@ var SQLITE = function () {
         if (SQLITE.prototype.dbclient != null) {
             var sqlStr = "SELECT id, guid, user, content, datetime, tag1, tag2, tag3, tag4, tag5 FROM " + type+ 
                         " WHERE user LIKE '%" + term + "%' OR content LIKE '%" + term + "%' OR tag1 LIKE '%" + term + "%' OR " +
-                        "tag2 LIKE '%" + term + "%' OR tag3 LIKE '%" + term + "%' OR tag4 LIKE '%" + term + "%' OR tag5 LIKE '%" + term + "%' LIMIT 100 ORDER BY id DESC";
+                        " tag2 LIKE '%" + term + "%' OR tag3 LIKE '%" + term + "%' OR tag4 LIKE '%" + term + "%' OR tag5 LIKE '%" + term + "%' ORDER BY id DESC LIMIT 100";
             SQLITE.prototype.dbclient.all(sqlStr, function (err, rows) {
                 callback(rows);
             });
@@ -200,7 +200,6 @@ function installDB(callback) {
                 SQLITE.prototype.dbclient.exec(data, function (createerr) {
                     if (!createerr) {
                         closeDb();
-                        console.log(1)
                         callback(true);
                     }else{
                         util.error(createerr);

@@ -43,14 +43,14 @@
         		<ul class='list-layout'>
         			<li>
         				<div class='sellBuy-title-container popover-parent' tag='popover-parent' data-request='sell'>
-        					<span class='do-title' bs-popover="'views/childview/sellbuy_popover.html'" data-unique='1' data-placement='bottom'>我要卖</span>
+        					<span class='do-title' bs-popover="'views/childview/sellbuy_popover.html'" data-unique='1' data-placement='bottom'><!-- 我要卖 -->1</span>
         				</div>
         			</li>
         			<li>
         				<div class='search-container'>
                             <label class="inline clearfix search-box">
                                 <span class="inline input-icon input-icon-right">
-                                    <input type='text' placeholder='Search...' ng-keydown='sellSearch()' class="form-control" ng-model='sellSearchTerm'>
+                                    <input type='text' placeholder='Search...' class="form-control" ng-model='sellSearchTerm'>
                                     <i class='icon-remove search-remove' ng-show='!!sellSearchTerm' ng-click='sellSearchTerm=""'></i>
                                     <i class="icon-search"></i>   
                                 </span>
@@ -61,9 +61,9 @@
         				<div class='show-items' sell-scroll-more>
                             <ul>    
             					<li ng-repeat='item in sellItems' class='item' ng-mouseenter='itemHover(item)' ng-mouseleave='itemLeave(item)'>
-                                    <img ng-src='{{item.picturlUrl}}' width='128' height='128' ng-hide='!item.picturlUrl'>
-                                    <div class='default-thumbnail-container' ng-show='!item.picturlUrl'>
-                                    <i class='icon-picture default-thumbnail'></i>
+                                    <div class='default-thumbnail-container'>
+                                    <img ng-src='{{item.pictureUrl}}' width='128' height='128' ng-hide='!item.pictureUrl'>
+                                    <i class='icon-picture default-thumbnail' ng-show='!item.pictureUrl'></i>
                                     </div>
                                     <textarea class='item-content' ng-model='item.content' ng-readonly='true' ng-disabled='true'></textarea>
                                     <span class='item-info1'>{{item.user}}</span>
@@ -80,13 +80,13 @@
         		<ul class='list-layout'>
         			<li>
         				<div class='sellBuy-title-container popover-parent' tag='popover-parent' data-request='buy'>
-        					<span class='do-title' bs-popover="'views/childview/sellbuy_popover.html'" data-unique='1' data-placement='bottom'>我要买</span>
+        					<span class='do-title' bs-popover="'views/childview/sellbuy_popover.html'" data-unique='1' data-placement='bottom'><!-- 我要买 -->2</span>
         				</div>
         			</li>
         			<li>
                         <label class="inline clearfix search-box">
                                 <span class="inline input-icon input-icon-right">
-                                    <input type='text' placeholder='Search...' ng-keydown='buySearch()' class="form-control" ng-model='buySearchTerm'>
+                                    <input type='text' placeholder='Search...' class="form-control" ng-model='buySearchTerm'>
                                     <i class='icon-remove search-remove' ng-show='!!buySearchTerm' ng-click='buySearchTerm=""'></i>
                                     <i class="icon-search"></i>   
                                 </span>
@@ -96,9 +96,9 @@
         				<div class='show-items' buy-scroll-more>
                             <ul>    
                                 <li ng-repeat='item in buyItems' class='item' ng-mouseenter='itemHover(item)' ng-mouseleave='itemLeave(item)'>
-                                    <img ng-src='{{item.picturlUrl}}' width='128' height='128' ng-hide='!item.picturlUrl'>
-                                    <div class='default-thumbnail-container' ng-show='!item.picturlUrl'>
-                                    <i class='icon-picture default-thumbnail'></i>
+                                    <div class='default-thumbnail-container'>
+                                    <img ng-src='{{item.pictureUrl}}' width='128' height='128' ng-hide='!item.pictureUrl'>
+                                    <i class='icon-picture default-thumbnail' ng-show='!item.pictureUrl'></i>
                                     </div>
                                     <textarea class='item-content' ng-model='item.content' ng-readonly='true' ng-disabled='true'></textarea>
                                     <span class='item-info1'>{{item.user}}</span>

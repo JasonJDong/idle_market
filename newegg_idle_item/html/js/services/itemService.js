@@ -72,7 +72,7 @@ itemService.service('ItemService', [
 	var searchItem = function (term, qt, callback) {
 		var paramsArray = new Array();
 		var termParam = 'q=' + term;
-		var qtParam = 'type' + qt;
+		var qtParam = 'qt=' + qt;
 		paramsArray.push(termParam, qtParam);
 		var params = paramsArray.join('&');
 

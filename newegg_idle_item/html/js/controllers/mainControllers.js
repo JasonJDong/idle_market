@@ -5,7 +5,8 @@ mainControllers.controller('MainCtrl', [
 	'$interval',
 	'ItemService',
 	'UtilsService',
-	 function ($scope, $interval, ItemService, UtilsService) {
+	'$timeout',
+	 function ($scope, $interval, ItemService, UtilsService, $timeout) {
 	 	var sellCount = 15;
 	 	var buyCount = 15;
 	 	var sellPage = 0;
@@ -95,14 +96,6 @@ mainControllers.controller('MainCtrl', [
 
 		checkMinItemsCount();
 
-		$scope.sellSearch = function () {
-			// body...
-		}
-
-		$scope.buySearch = function () {
-			// body...
-		}
-
 		$scope.itemHover = function (item) {
 			item.canShowEditor = true;
 		}
@@ -118,6 +111,44 @@ mainControllers.controller('MainCtrl', [
 		$scope.editBuyItem = function (item) {
 			$scope.selectedItem = item;
 		}
+
+		$scope.$watch('sellSearchTerm', function (newValue, oldValue) {
+			$scope.userSearchSellInputing = $scope.userSearchSellInputing || true
+			if (!!newValue) {
+				$scope.userSearchSellInputing = true;
+				var setNotInputing = $timeout(function () {
+					$scope.userSearchSellInputing = false;
+				},1500);
+			};
+		});
+
+		$scope.$watch('userSearchSellInputing', function (newValue, oldValue) {
+			if (!newValue) {
+				ItemService.searchItem($scope.sellSearchTerm, 1, function (err, items) {
+					$scope.sellItems = items;
+					$scope.sellItems.sort(sortCompare);
+				})
+			}
+		})
+
+		$scope.$watch('buySearchTerm', function (newValue, oldValue) {
+			$scope.userSearchBuyInputing = $scope.userSearchBuyInputing || true
+			if (!!newValue) {
+				$scope.userSearchBuyInputing = true;
+				var setNotInputing = $timeout(function () {
+					$scope.userSearchBuyInputing = false;
+				},1500);
+			};
+		});
+
+		$scope.$watch('userSearchBuyInputing', function (newValue, oldValue) {
+			if (!newValue) {
+				ItemService.searchItem($scope.buySearchTerm, 0, function (err, items) {
+					$scope.buyItems = items;
+					$scope.buyItems.sort(sortCompare);
+				})
+			}
+		})
 
 		$scope.$on('sellScrollMore', function () {
 			$scope.loadingMoreSell = true;

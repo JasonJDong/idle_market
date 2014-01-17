@@ -76,7 +76,6 @@ app.post('/fileupload', function (req, res) {
     });
   }
   catch(e){
-        console.log(e)
     res.send({success: false})
     res.end()
   }
@@ -255,7 +254,6 @@ var getFile = function (fPath, res, setCache) {
   try{
     fs.exists(fPath, function (exists) {
       if (!exists) {
-        console.log(fPath)
         fPath = path.join(config.home, 'views/error/404.html');
         res.setHeader('Content-Type', 'text/html');
         res.setHeader('Cache-Control', 'no-cache');
