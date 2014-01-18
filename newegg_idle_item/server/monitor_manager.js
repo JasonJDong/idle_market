@@ -36,6 +36,8 @@ setInterval(function () {
 			if(monitor.response){
 				monitor.response.end();
 			}
+		}else{
+			monitors.push(monitor)
 		}
 	})
 }, 1000)

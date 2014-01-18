@@ -213,13 +213,13 @@ mainControllers.controller('MainCtrl', [
 		function addItem (module) {
 			$scope.addedSellItem = $scope.addedSellItem || 0;
 			$scope.addedBuyItem = $scope.addedBuyItem || 0;
-			var moduleType = module == 'toSell' ? '售卖':'求购'; 
+			var moduleType = module == 'sell' ? '售卖':'求购'; 
 			switch(module){
-				case 'toSell':
+				case 'sell':
 					$scope.addedSellItem += 1;
 					$scope.sellNotify = '有 ' + $scope.addedSellItem + ' 条新' + moduleType + '消息！';
 					break;
-				case 'toBuy':
+				case 'buy':
 					$scope.addedBuyItem += 1;
 					$scope.buyNotify = '有 ' + $scope.addedSellItem + ' 条新' + moduleType + '消息！';
 					break;
@@ -256,20 +256,22 @@ mainControllers.controller('MainCtrl', [
 			ItemService.sync(immdiately, addItem, updateItem, deleteItem);
 		}
 
-		//ItemService.sync(immdiately, addItem, updateItem, deleteItem);
-
-		$scope.uploadBuy = function () {
+		$scope.userFetchBuy = function () {
 			ItemService.queryBuyItem($scope.addedBuyItem, 0, function (items) {
-				// body...
+				$scope.buyItems = removeRepeat(items, $scope.buyItems);
+				$scope.originalBuyItems = removeRepeat(items, $scope.originalBuyItems);
 				$scope.addedBuyItem = 0;
 			});
 		}
 
-		$scope.uploadSell = function () {
+		$scope.userFetchSell = function () {
 			ItemService.querySellItem($scope.addedSellItem, 0, function (items) {
-				// body...
+				$scope.sellItems = removeRepeat(items, $scope.sellItems);
+				$scope.originalSellItems = removeRepeat(items, $scope.originalSellItems);
 				$scope.addedSellItem = 0;
 			});
 		}
+
+		ItemService.sync(immdiately, addItem, updateItem, deleteItem);
 
 }]);

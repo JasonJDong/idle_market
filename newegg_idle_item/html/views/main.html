@@ -60,7 +60,7 @@
         			<li>
         				<div class='show-items' sell-scroll-more>
                             <ul>
-                                <li ng-show='$scope.addedSellItem > 0'>
+                                <li ng-show='addedSellItem > 0'>
                                     <div class='notify-container'><span class='notify-content' ng-click='uploadSell()'>{{sellNotify}}</span></div>
                                 </li>    
             					<li ng-repeat='item in sellItems' class='item' ng-mouseenter='itemHover(item)' ng-mouseleave='itemLeave(item)'>
@@ -98,7 +98,7 @@
         			<li>
         				<div class='show-items' buy-scroll-more>
                             <ul>
-                                <li ng-show='$scope.addedBuyItem > 0'>
+                                <li ng-show='addedBuyItem > 0'>
                                     <div class='notify-container'><span class='notify-content' ng-click='uploadBuy()'>{{buyNotify}}</span></div>
                                 </li>    
                                 <li ng-repeat='item in buyItems' class='item' ng-mouseenter='itemHover(item)' ng-mouseleave='itemLeave(item)'>

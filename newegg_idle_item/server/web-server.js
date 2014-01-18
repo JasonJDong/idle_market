@@ -101,7 +101,8 @@ app.post('/buyitem', function (req, res) {
       cbData.changes = cbData.changes || 0;
       cbData.updated = cbData.changes != 0;
       if (cbData.updated) {
-        monitorManager.notifyChanges(data, action + '_sell_item')
+        delete data.password;
+        monitorManager.notifyChanges(data, action + '_buy_item')
       };
       res.send(cbData);
       res.end()
@@ -158,7 +159,8 @@ app.post('/sellitem', function (req, res) {
       cbData.changes = cbData.changes || 0;
       cbData.updated = cbData.changes != 0;
       if (cbData.updated) {
-        monitorManager.notifyChanges(data, action + '_buy_item')
+        delete data.password;
+        monitorManager.notifyChanges(data, action + '_sell_item')
       };
       res.send(cbData);
       res.end()

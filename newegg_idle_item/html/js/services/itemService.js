@@ -119,17 +119,17 @@ itemService.service('ItemService', [
 		})
 		.success(function (result) {
 			immdiately();
-			var changeType = result.changeType.split('_');
-			var action = changeType.shift();
-			var module = changeType.shift();
-			if (action == 'add' && add) add(module);
-			if (action == 'update' && update) update(result.item, module);
-			if (action == 'delete' && _delete) _delete(result.item, module);
+			if (!!result) {
+				var changeType = result.changeType.split('_');
+				var action = changeType.shift();
+				var module = changeType.shift();
+				if (action == 'add' && add) add(module);
+				if (action == 'update' && update) update(result.item, module);
+				if (action == 'delete' && _delete) _delete(result.item, module);
+			}
 		})
 		.error(function () {
-			if (add) add();
-			if (update) update();
-			if (_delete) _delete();
+			immdiately();
 		})
 	}
 
