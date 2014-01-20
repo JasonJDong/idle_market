@@ -169,10 +169,10 @@ var SQLITE = function () {
         }
     }
 
-    this.getItems = function (count, page, type, callback) {
+    this.getItems = function (count, skip, type, callback) {
         if (SQLITE.prototype.dbclient != null) {
             var sqlStr = "SELECT id, guid, user, content, datetime, pictureUrl, tag1, tag2, tag3, tag4, tag5 FROM " + type + 
-                        " LIMIT " + count + " OFFSET " + (page * count);
+                        " ORDER BY id DESC LIMIT " + count + " OFFSET " + skip;
             SQLITE.prototype.dbclient.all(sqlStr, function (err, rows) {
                 callback(rows);
             });

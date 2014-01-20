@@ -4,6 +4,8 @@ itemService.service('ItemService', [
 	'$http',
 	'UtilsService',
 	function ($http, UtilsService) {
+
+	var syncServer = '';
 	
 	var buyItem = function (item, callback) {
 		$http({
@@ -35,8 +37,8 @@ itemService.service('ItemService', [
 		})
 	}
 
-	var queryBuyItem = function (count, page, callback) {
-		var uri = '/buyitem/:page/:count'.replace(':page', page + '').replace(':count', count + '');
+	var queryBuyItem = function (count, skip, callback) {
+		var uri = '/buyitem/:skip/:count'.replace(':skip', skip + '').replace(':count', count + '');
 
 		$http({
 			method: 'GET',
@@ -52,8 +54,8 @@ itemService.service('ItemService', [
 		})
 	}
 
-	var querySellItem = function (count, page, callback) {
-		var uri = '/sellitem/:page/:count'.replace(':page', page + '').replace(':count', count + '');
+	var querySellItem = function (count, skip, callback) {
+		var uri = '/sellitem/:skip/:count'.replace(':skip', skip + '').replace(':count', count + '');
 
 		$http({
 			method: 'GET',
@@ -110,27 +112,50 @@ itemService.service('ItemService', [
 		})
 	}
 
+	var getSyncServer = function (callback) {
+		if (!syncServer) {
+			$http({
+				method: 'GET',
+				url: UtilsService.getBaseUrl() + '/syncServer',
+			})
+			.success(function (server) {
+				syncServer = server;
+				callback();
+			})
+			.error(function () {
+				syncServer = '';
+				callback();
+			});
+		}else{
+			callback();
+		}
+	}
+
 	var sync = function (immdiately, add, update, _delete) {
-		$http({
-			method: 'GET',
-			url: UtilsService.getBaseUrl() + '/sync',
-			cache: false,
-			timeout: 60 * 2 * 1000
-		})
-		.success(function (result) {
-			immdiately();
-			if (!!result) {
-				var changeType = result.changeType.split('_');
-				var action = changeType.shift();
-				var module = changeType.shift();
-				if (action == 'add' && add) add(module);
-				if (action == 'update' && update) update(result.item, module);
-				if (action == 'delete' && _delete) _delete(result.item, module);
+		getSyncServer(function () {
+			if (syncServer) {
+				$http({
+					method: 'GET',
+					url: syncServer + '/sync',
+					cache: false,
+					timeout: 60 * 2 * 1000
+				})
+				.success(function (result) {
+					immdiately();
+					if (!!result) {
+						var changeType = result.changeType.split('_');
+						var action = changeType.shift();
+						var module = changeType.shift();
+						if (action == 'add' && add) add(module);
+						if (action == 'update' && update) update(result.item, module);
+						if (action == 'delete' && _delete) _delete(result.item, module);
+					}
+				})
+				.error(function () {
+					immdiately();
+				})
 			}
-		})
-		.error(function () {
-			immdiately();
-		})
+		});
 	}
 
 	return {

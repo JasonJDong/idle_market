@@ -11,7 +11,6 @@ var config = require('./config');
 var crypto = require('crypto');
 var moduleType = require('./sqliteutil').moduleType;
 var sqliteClass = require('./sqliteutil').Sqlite;
-var monitorManager = require('./monitor_manager');
 
 var sqlite = new sqliteClass();
 sqlite.open();
@@ -37,6 +36,11 @@ app.configure(function () {
         dumpExceptions: true,
         showStack: true
     }));
+});
+
+app.get('/syncServer', function (req, res) {
+  res.send(config.syncServer);
+  res.end();
 });
 
 app.get('/', function (req, res) {
@@ -82,8 +86,8 @@ app.post('/fileupload', function (req, res) {
   }
 });
 
-app.get('/buyitem/:page/:count', function (req, res) {
-  sqlite.getItems(req.params.count, req.params.page, moduleType.buy, function (results) {
+app.get('/buyitem/:skip/:count', function (req, res) {
+  sqlite.getItems(req.params.count, req.params.skip, moduleType.buy, function (results) {
     res.send(results);
     res.end();
   });
@@ -102,7 +106,7 @@ app.post('/buyitem', function (req, res) {
       cbData.updated = cbData.changes != 0;
       if (cbData.updated) {
         delete data.password;
-        monitorManager.notifyChanges(data, action + '_buy_item')
+        notifyChanges(data, action + '_buy_item')
       };
       res.send(cbData);
       res.end()
@@ -127,7 +131,7 @@ function deleteItem(req, res, moduleType) {
         cbData.changes = cbData.changes || 0;
         cbData.deleted = cbData.changes != 0;
         if (cbData.deleted) {
-          monitorManager.notifyChanges(guid, 'del_' + moduleType.toLowerCase() + '_item')
+          notifyChanges(guid, 'del_' + moduleType.toLowerCase() + '_item')
         };
         res.send(cbData);
         res.end()
@@ -140,8 +144,8 @@ function deleteItem(req, res, moduleType) {
   }
 }
 
-app.get('/sellitem/:page/:count', function (req, res) {
-  sqlite.getItems(req.params.count, req.params.page, moduleType.sell, function (results) {
+app.get('/sellitem/:skip/:count', function (req, res) {
+  sqlite.getItems(req.params.count, req.params.skip, moduleType.sell, function (results) {
     res.send(results);
     res.end();
   });
@@ -160,7 +164,7 @@ app.post('/sellitem', function (req, res) {
       cbData.updated = cbData.changes != 0;
       if (cbData.updated) {
         delete data.password;
-        monitorManager.notifyChanges(data, action + '_sell_item')
+        notifyChanges(data, action + '_sell_item')
       };
       res.send(cbData);
       res.end()
@@ -227,12 +231,6 @@ app.get('/search', function (req, res) {
     res.send(404);
     res.end();
   }
-})
-
-app.get('/sync', function (req, res) {
-  var parsedUrl = url.parse(req.url, true);
-  // var mtime = parsedUrl.query.mtime;
-  monitorManager.appendMonitor(res, new Date().valueOf());
 })
 
 app.get('/*', function (req, res) {
@@ -360,6 +358,17 @@ var generateRandomFilePath = function (originalName, expressTempFile, callback) 
 
   readStream.on('close', function () {
     callback(pathData)
+  });
+}
+
+var notifyChanges = function (data, changeType) {
+  var option = {
+      url: url.resolve(config.syncServer, '/notify'),
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({data: data, changeType: changeType})
+    }
+  request(option, function (err, res, body) {
   });
 }
 

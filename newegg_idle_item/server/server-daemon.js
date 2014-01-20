@@ -5,6 +5,7 @@ var neweggUtil = require('./util')
 var path = require('path');
 var cluster = require('cluster');
 var webServer = require('./web-server');
+var syncServer = require('./sync-server')
 var os = require('os');
 var sqliteClass = require('./sqliteutil').Sqlite;
 
@@ -27,6 +28,8 @@ if (cluster.isMaster) {
     cluster.on('exit', function (worker) {
         cluster.fork();
     });
+
+    syncServer.start();
 
 } else {
 	webServer.start();

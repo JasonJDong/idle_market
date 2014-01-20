@@ -9,8 +9,9 @@ mainControllers.controller('MainCtrl', [
 	 function ($scope, $interval, ItemService, UtilsService, $timeout) {
 	 	var sellCount = 15;
 	 	var buyCount = 15;
-	 	var sellPage = 0;
-	 	var buyPage = 0;
+
+	 	var canFetchSell = true;
+	 	var canFetchBuy = true;
 	
 		var originalSellItems = {items: [], fingers: []};
 		var originalBuyItems = {items: [], fingers: []};
@@ -39,8 +40,14 @@ mainControllers.controller('MainCtrl', [
 			return src;
 		}
 
-		function queryBuyItem (callback) {
-			ItemService.queryBuyItem(buyCount, buyPage, function (err, items) {
+		function queryBuyItem (count, skip, callback) {
+			ItemService.queryBuyItem(count, skip, function (err, items) {
+				if (items.length == 0) {
+					canFetchBuy = false;
+					$timeout(function () {
+						canFetchBuy = true;
+					}, 1000)
+				};
 				originalBuyItems = removeRepeat(items, originalBuyItems);
 				originalBuyItems.items.sort(sortCompare)
 				if (!!$scope.buySearchTerm) {
@@ -48,14 +55,18 @@ mainControllers.controller('MainCtrl', [
 				}else{
 					$scope.buyItems = originalBuyItems.items;
 				}
-				// $scope.buyItems.sort(sortCompare);
-				buyPage = parseInt(originalBuyItems.items.length / buyCount);
 				if (callback) callback();
 			});
 		}
 
-		function querySellItem (callback) {
-			ItemService.querySellItem(sellCount, sellPage, function (err, items) {
+		function querySellItem (count, skip, callback) {
+			ItemService.querySellItem(count, skip, function (err, items) {
+				if (items.length == 0) {
+					canFetchSell = false;
+					$timeout(function () {
+						canFetchSell = true;
+					}, 1000)
+				};
 				originalSellItems = removeRepeat(items, originalSellItems);
 				originalSellItems.items.sort(sortCompare)
 				if (!!$scope.sellSearchTerm) {
@@ -63,38 +74,14 @@ mainControllers.controller('MainCtrl', [
 				}else{
 					$scope.sellItems = originalSellItems.items;
 				}
-				// $scope.sellItems.sort(sortCompare);
-				sellPage = parseInt(originalSellItems.items.length / sellCount);
 				if (callback) callback();
 			});
 		}
 
 		(function init () {
-			querySellItem();
-			queryBuyItem();
+			querySellItem(15, 0);
+			queryBuyItem(15, 0);
 		})()
-
-		//for less than 15 item
-
-		function checkMinItemsCount (argument) {
-			var lessSell = $interval(function () {
-				if (originalSellItems.items.length < 15) {
-					querySellItem();
-				}else{
-					$interval.cancel(lessSell);
-				}
-			}, 5 * 1000)
-
-			var lessBuy = $interval(function () {
-				if (originalBuyItems.items.length < 15) {
-					queryBuyItem();
-				}else{
-					$interval.cancel(lessBuy);
-				}
-			}, 5 * 1000)
-		}
-
-		checkMinItemsCount();
 
 		$scope.itemHover = function (item) {
 			item.canShowEditor = true;
@@ -151,44 +138,36 @@ mainControllers.controller('MainCtrl', [
 		})
 
 		$scope.$on('sellScrollMore', function () {
-			$scope.loadingMoreSell = true;
-			querySellItem(function  () {
-				$scope.loadingMoreSell = false;
-			});
+			if (canFetchSell) {
+				$scope.loadingMoreSell = true;
+				var skip = originalSellItems.items.length;
+				querySellItem(10, skip, function  () {
+					$scope.loadingMoreSell = false;
+				});
+			};
 		});
 
 		$scope.$on('buyScrollMore', function () {
-			$scope.loadingMoreBuy = true;
-			queryBuyItem(function () {
-				$scope.loadingMoreBuy = false;
-			});
+			if (canFetchBuy) {
+				$scope.loadingMoreBuy = true;
+				var skip = originalBuyItems.items.length;
+				queryBuyItem(10, skip, function () {
+					$scope.loadingMoreBuy = false;
+				});
+			};
 		});
 
 		$scope.$on('itemDelete', function (evt, guid, type) {
 			if (type.indexOf('sell') > -1) {
-				deleteLocalSellItem(guid, originalSellItems)
-				deleteLocalSellItem(guid, $scope.sellItems)
+				doDeleteItem(guid, originalSellItems)
+				doDeleteItem(guid, $scope.sellItems)
 				checkMinItemsCount();
 			}else if(type.indexOf('buy') > -1){
-				deleteLocalSellItem(guid, originalBuyItems)
-				deleteLocalSellItem(guid, $scope.buyItems)
+				doDeleteItem(guid, originalBuyItems)
+				doDeleteItem(guid, $scope.buyItems)
 				checkMinItemsCount();
 			}
 		})
-
-		function deleteLocalSellItem (guid, src) {
-			var i = 0;
-			var find = false;
-			for (; i < src.length; i++) {
-				if(src[i].guid === guid){
-					find = true;
-					break;
-				}
-			}
-			if (find) {
-				src.splice(i, 1);
-			}
-		}
 
 		function doUpdateItem (item, src) {
 			angular.forEach(src, function (_item) {
@@ -204,6 +183,7 @@ mainControllers.controller('MainCtrl', [
 			var i = 0;
 			for (; i < src.length; i++) {
 				if(src[i].guid == guid){
+					find = true;
 					break;
 				}
 			}
@@ -228,26 +208,26 @@ mainControllers.controller('MainCtrl', [
 
 		function updateItem (item, module) {
 			switch(module){
-				case 'toSell':
+				case 'sell':
 					doUpdateItem(item, $scope.sellItems);
-					doUpdateItem(item, $scope.originalSellItems);
+					doUpdateItem(item, originalSellItems.items);
 					break;
-				case 'toBuy':
+				case 'buy':
 					doUpdateItem(item, $scope.buyItems);
-					doUpdateItem(item, $scope.originalBuyItems);
+					doUpdateItem(item, originalBuyItems.items);
 					break;
 			}
 		}
 
 		function deleteItem (guid, module) {
 			switch(module){
-				case 'toSell':
+				case 'sell':
 					doDeleteItem(guid, $scope.sellItems);
-					doDeleteItem(guid, $scope.originalSellItems);
+					doDeleteItem(guid, originalSellItems.items);
 					break;
-				case 'toBuy':
+				case 'buy':
 					doDeleteItem(guid, $scope.buyItems);
-					doDeleteItem(guid, $scope.originalBuyItems)
+					doDeleteItem(guid, originalBuyItems.items)
 					break;;
 			}
 		}
@@ -257,21 +237,30 @@ mainControllers.controller('MainCtrl', [
 		}
 
 		$scope.userFetchBuy = function () {
-			ItemService.queryBuyItem($scope.addedBuyItem, 0, function (items) {
-				$scope.buyItems = removeRepeat(items, $scope.buyItems);
-				$scope.originalBuyItems = removeRepeat(items, $scope.originalBuyItems);
+			ItemService.queryBuyItem($scope.addedBuyItem, 0, function (hasErr, items) {
+				originalBuyItems = removeRepeat(items, originalBuyItems);
+				items.sort(sortCompare);
+				angular.forEach(items, function (item) {
+					if (originalBuyItems.fingers.indexOf(item.guid) == -1) {
+						$scope.buyItems.unshift(item);
+					};
+				})
 				$scope.addedBuyItem = 0;
 			});
 		}
 
 		$scope.userFetchSell = function () {
-			ItemService.querySellItem($scope.addedSellItem, 0, function (items) {
-				$scope.sellItems = removeRepeat(items, $scope.sellItems);
-				$scope.originalSellItems = removeRepeat(items, $scope.originalSellItems);
+			ItemService.querySellItem($scope.addedSellItem, 0, function (hasErr, items) {
+				originalSellItems = removeRepeat(items, originalSellItems);
+				items.sort(sortCompare);
+				angular.forEach(items, function (item) {
+					if (originalSellItems.fingers.indexOf(item.guid) == -1) {
+						$scope.sellItems.unshift(item);
+					};
+				})
 				$scope.addedSellItem = 0;
 			});
 		}
 
 		ItemService.sync(immdiately, addItem, updateItem, deleteItem);
-
 }]);

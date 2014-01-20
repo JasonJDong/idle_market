@@ -511,3 +511,249 @@
     at D:\git\idle_market\newegg_idle_item\server\web-server.js:72:13
     at D:\git\idle_market\newegg_idle_item\server\web-server.js:343:7
     at Object.cb [as oncomplete] (fs.js:168:19) [TypeError: first argument must be a string or Buffer]
+[2014-01-20 16:43:34.610] [ERROR] errors - web server uncaughtException :  Argument error, options.body. 
+ type: undefined 
+ arguments: undefined 
+ stack:  Error: Argument error, options.body.
+    at Request.init (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:328:13)
+    at new Request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:105:8)
+    at request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\index.js:53:11)
+    at notifyChanges (D:\git\idle_market\newegg_idle_item\server\web-server.js:365:3)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:167:9
+    at Statement.<anonymous> (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:124:17)
+--> in Database#run('INSERT INTO toSell(id, guid, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ '32724ca6-10ba-461d-967c-53391b5950a3',
+  '123',
+  'asdfasdfasd',
+  1390207414303,
+  '94f103bfad21476bbbeb5b9733cf857d',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:116:39)
+    at app.post.data (D:\git\idle_market\newegg_idle_item\server\web-server.js:158:10)
+    at callbacks (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [Error: Argument error, options.body.] __augmented: true }
+[2014-01-20 16:43:34.957] [ERROR] errors - web server uncaughtException :  Argument error, options.body. 
+ type: undefined 
+ arguments: undefined 
+ stack:  Error: Argument error, options.body.
+    at Request.init (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:328:13)
+    at new Request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:105:8)
+    at request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\index.js:53:11)
+    at notifyChanges (D:\git\idle_market\newegg_idle_item\server\web-server.js:365:3)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:167:9
+    at Statement.<anonymous> (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:124:17)
+--> in Database#run('INSERT INTO toSell(id, guid, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ '2e58039c-cd97-42e0-b54b-7d286a9ae298',
+  '123',
+  'asdfasdfasd',
+  1390207414755,
+  '7c5c207726ad040cd8c998b152c879e3',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:116:39)
+    at app.post.data (D:\git\idle_market\newegg_idle_item\server\web-server.js:158:10)
+    at callbacks (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [Error: Argument error, options.body.] __augmented: true }
+[2014-01-20 16:43:36.346] [ERROR] errors - web server uncaughtException :  Argument error, options.body. 
+ type: undefined 
+ arguments: undefined 
+ stack:  Error: Argument error, options.body.
+    at Request.init (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:328:13)
+    at new Request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:105:8)
+    at request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\index.js:53:11)
+    at notifyChanges (D:\git\idle_market\newegg_idle_item\server\web-server.js:365:3)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:167:9
+    at Statement.<anonymous> (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:124:17)
+--> in Database#run('INSERT INTO toSell(id, guid, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ 'a583ee40-f6fe-42c6-b55c-3ef7725c0bd8',
+  '123',
+  'asdfasdfasd',
+  1390207416242,
+  '0bc8c8329b653101f11612c56cfa8d7d',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:116:39)
+    at app.post.data (D:\git\idle_market\newegg_idle_item\server\web-server.js:158:10)
+    at callbacks (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [Error: Argument error, options.body.] __augmented: true }
+[2014-01-20 16:46:17.683] [ERROR] errors - web server uncaughtException :  Argument error, options.body. 
+ type: undefined 
+ arguments: undefined 
+ stack:  Error: Argument error, options.body.
+    at Request.init (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:328:13)
+    at new Request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:105:8)
+    at request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\index.js:53:11)
+    at notifyChanges (D:\git\idle_market\newegg_idle_item\server\web-server.js:365:3)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:167:9
+    at Statement.<anonymous> (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:124:17)
+--> in Database#run('INSERT INTO toSell(id, guid, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ '86a97473-f994-43d2-98f0-d202a525f5a7',
+  'adfasd',
+  'asdfasdfasd',
+  1390207577581,
+  'b46b8f1c1c39beac9e53f145ad33d651',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:116:39)
+    at app.post.data (D:\git\idle_market\newegg_idle_item\server\web-server.js:158:10)
+    at callbacks (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [Error: Argument error, options.body.] __augmented: true }
+[2014-01-20 16:46:17.847] [ERROR] errors - web server uncaughtException :  Argument error, options.body. 
+ type: undefined 
+ arguments: undefined 
+ stack:  Error: Argument error, options.body.
+    at Request.init (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:328:13)
+    at new Request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:105:8)
+    at request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\index.js:53:11)
+    at notifyChanges (D:\git\idle_market\newegg_idle_item\server\web-server.js:365:3)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:167:9
+    at Statement.<anonymous> (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:124:17)
+--> in Database#run('INSERT INTO toSell(id, guid, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ 'e5cd4d09-b322-484d-992a-1dbb2697354e',
+  'adfasd',
+  'asdfasdfasd',
+  1390207577763,
+  'f0387fcd4f26a037bfab6e97d65849e4',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:116:39)
+    at app.post.data (D:\git\idle_market\newegg_idle_item\server\web-server.js:158:10)
+    at callbacks (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [Error: Argument error, options.body.] __augmented: true }
+[2014-01-20 16:46:19.134] [ERROR] errors - web server uncaughtException :  Argument error, options.body. 
+ type: undefined 
+ arguments: undefined 
+ stack:  Error: Argument error, options.body.
+    at Request.init (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:328:13)
+    at new Request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:105:8)
+    at request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\index.js:53:11)
+    at notifyChanges (D:\git\idle_market\newegg_idle_item\server\web-server.js:365:3)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:167:9
+    at Statement.<anonymous> (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:124:17)
+--> in Database#run('INSERT INTO toSell(id, guid, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ '490e00c9-07c3-4edd-9cd8-33894eeed29d',
+  'adfasd',
+  'asdfasdfasd',
+  1390207579004,
+  'd9f7c1a7b0d3d19a8d9c81dd46956781',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:116:39)
+    at app.post.data (D:\git\idle_market\newegg_idle_item\server\web-server.js:158:10)
+    at callbacks (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [Error: Argument error, options.body.] __augmented: true }
+[2014-01-20 16:47:41.901] [ERROR] errors - web server uncaughtException :  Argument error, options.body. 
+ type: undefined 
+ arguments: undefined 
+ stack:  Error: Argument error, options.body.
+    at Request.init (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:328:13)
+    at new Request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:105:8)
+    at request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\index.js:53:11)
+    at notifyChanges (D:\git\idle_market\newegg_idle_item\server\web-server.js:365:3)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:167:9
+    at Statement.<anonymous> (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:124:17)
+--> in Database#run('INSERT INTO toSell(id, guid, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ '98353095-f4c9-40e1-9d0d-df113b93c023',
+  '123123',
+  'asdfasdfasd',
+  1390207661709,
+  '191ff9cebc16883ef55116a9e29b9452',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:116:39)
+    at app.post.data (D:\git\idle_market\newegg_idle_item\server\web-server.js:158:10)
+    at callbacks (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [Error: Argument error, options.body.] __augmented: true }
+[2014-01-20 16:47:43.731] [ERROR] errors - web server uncaughtException :  Argument error, options.body. 
+ type: undefined 
+ arguments: undefined 
+ stack:  Error: Argument error, options.body.
+    at Request.init (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:328:13)
+    at new Request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\request.js:105:8)
+    at request (D:\git\idle_market\newegg_idle_item\server\node_modules\request\index.js:53:11)
+    at notifyChanges (D:\git\idle_market\newegg_idle_item\server\web-server.js:365:3)
+    at D:\git\idle_market\newegg_idle_item\server\web-server.js:167:9
+    at Statement.<anonymous> (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:124:17)
+--> in Database#run('INSERT INTO toSell(id, guid, user, content, datetime, password, pictureUrl, tag1, tag2, tag3, tag4, tag5) VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [ 'af308259-f302-4290-aa55-d1981bf5b317',
+  '123123',
+  'asdfasdfasd',
+  1390207663400,
+  '4ad3d3adfeb438badf4dc0253178e7e0',
+  '',
+  '',
+  '',
+  '',
+  '',
+  '' ], [Function])
+    at sellItem (D:\git\idle_market\newegg_idle_item\server\sqliteutil.js:116:39)
+    at app.post.data (D:\git\idle_market\newegg_idle_item\server\web-server.js:158:10)
+    at callbacks (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:161:37)
+    at param (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:135:11)
+    at pass (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:142:5)
+    at Router._dispatch (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:170:5)
+    at Object.router (D:\git\idle_market\newegg_idle_item\server\node_modules\express\lib\router\index.js:33:10)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:190:15)
+    at next (D:\git\idle_market\newegg_idle_item\server\node_modules\express\node_modules\connect\lib\proto.js:192:9) { [Error: Argument error, options.body.] __augmented: true }
+[2014-01-20 17:07:13.267] [ERROR] errors - web server uncaughtException :  read ECONNRESET 
+ type: undefined 
+ arguments: undefined 
+ stack:  Error: read ECONNRESET
+    at errnoException (net.js:884:11)
+    at TCP.onread (net.js:539:19) { [Error: read ECONNRESET] code: 'ECONNRESET', errno: 'ECONNRESET', syscall: 'read' }

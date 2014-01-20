@@ -580,6 +580,7 @@ h5 img{
 .refresher{
   display: block;
   vertical-align: middle;
+  z-index: 10000;
 }
 
 .search-remove{
@@ -628,6 +629,12 @@ h5 img{
   height: 30px;
   vertical-align: middle;
   border-radius: 5px;
+}
+
+.notify-container:hover{
+  cursor: pointer;
+  opacity: 0.75;
+  filter: alpha(opacity=0.75);
 }
 
 .notify-content{

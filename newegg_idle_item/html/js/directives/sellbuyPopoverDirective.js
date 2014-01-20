@@ -30,6 +30,7 @@ mainControllers.directive('sellbuyPopover', [
 			}
 
 			function sellNewItem () {
+				$scope.working = true;
 				$scope.selectedItem.tagsString = $scope.selectedItem.tagsString || ''
 				
 				var item = $scope.selectedItem;
@@ -39,6 +40,7 @@ mainControllers.directive('sellbuyPopover', [
 				ItemService.sellItem(
 					item,
 					function (success, respData) {
+						$scope.working = false;
 						var msg = respData.updated ? '成功!' : '失败，密码不正确？'
 						if (respData && respData.guid) {
 							$scope.selectedItem.guid = respData.guid;
@@ -49,6 +51,7 @@ mainControllers.directive('sellbuyPopover', [
 			}
 
 			function buyNewItem () {
+				$scope.working = true;
 				$scope.selectedItem.tagsString = $scope.selectedItem.tagsString || ''
 				
 				var item = $scope.selectedItem;
@@ -58,6 +61,7 @@ mainControllers.directive('sellbuyPopover', [
 				ItemService.buyItem(
 					item,
 					function (success, respData) {
+						$scope.working = false;
 						var msg = respData.updated ? '成功!' : '失败，密码不正确？'
 						if (respData && respData.guid) {
 							$scope.selectedItem.guid = respData.guid;
